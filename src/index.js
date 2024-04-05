@@ -14,3 +14,20 @@ function logic() {
     */
 }
 
+(function webPageStarts(){
+    const newProject = document.querySelector('.dashboard button:first-of-type');
+    const delProject = document.querySelector('.delete');
+
+    newProject.addEventListener('click', () => {
+        //Add new project function
+    });
+
+    //Essentially only delProject button and later the one to add todo need to know the button pressed at the moment. i could set an attribute on the element clicked for example(?)
+    delProject.addEventListener('click', () =>{
+        //Add function to delete it
+    });
+
+
+
+    //This function gets executed only at runtime, so i cannot put the function to get the button pressed.
+})()
