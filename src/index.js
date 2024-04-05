@@ -13,3 +13,4 @@ function logic() {
     8)another iife gets the value of the currently clicked button and uses a button that takes a new todo and push it into the array of todos. The print function will print everything without you thinking about it
     */
 }
+
