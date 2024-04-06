@@ -15,6 +15,9 @@ function logic() {
 }
 
 (function webPageStarts(){
+    const listProjects = [];
+    let whoIsClicked;
+
     const newProject = document.querySelector('.dashboard button:first-of-type');
     const delProject = document.querySelector('.delete');
 
@@ -63,3 +66,5 @@ function Todo(name,description,dueDate,priority){
         return `name: ${name}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
     }
 }
+
+
