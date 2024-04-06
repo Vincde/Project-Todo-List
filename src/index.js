@@ -18,14 +18,32 @@ function logic() {
     const listProjects = [];
     let whoIsClicked;
 
+    const inputSelector = document.querySelector('.dashboard input');
     const newProject = document.querySelector('.dashboard button:first-of-type');
     const delProject = document.querySelector('.delete');
 
     newProject.addEventListener('click', () => {
-        //Add new project function
+        if(inputSelector && inputSelector.textContent !== '' && inputSelector.textContent !== undefined && inputSelector.textContent !== null){
+        let input = inputSelector.value;
+
+        const newProject = Project(input);
+        listProjects.push(newProject);
+        
+        populateWithProjectButton(input);
+
+        const projectsButtons = document.querySelector('.projects button:last-of-type');
+
+        if(projectsButtons){
+            projectsButtons.addEventListener('click', (e)=>{
+                whoIsClicked = e.currentTarget.textContent;
+                printTodoElements(e.currentTarget.textContent,listProjects);
+            });
+        }
+        
+        }
     });
 
-    //Essentially only delProject button and later the one to add todo need to know the button pressed at the moment. i could set an attribute on the element clicked for example(?)
+    
     delProject.addEventListener('click', () =>{
         //Add function to delete it
     });
@@ -47,9 +65,9 @@ function Project(name){
         this.todo.push(obj);
     }
 
-    this.printTodo = () =>{
+    this.printTodo = (div) =>{
         for(elem of this.todo){
-            console.log(elem.print());
+            //IDK
         }
     }
 
@@ -68,3 +86,23 @@ function Todo(name,description,dueDate,priority){
 }
 
 
+function populateWithProjectButton(input){
+    const projectSelector = document.querySelector('.projects');
+
+    const newB = document.createElement('button');
+    newB.setAttribute('type','button');
+    newB.textContent = input;
+
+    projectSelector.appendChild(newB);
+}
+
+/* function printTodoElements(name,listProjects){
+    for(elem of listProjects){
+        if(name === elem.getName()){
+            for(let i = 0; i < elem.todo.length; i++){
+            const newDiv = document.createElement('div');
+            
+            }
+        }
+    }
+} */
