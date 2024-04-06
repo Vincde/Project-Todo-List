@@ -36,6 +36,7 @@ function logic() {
         if(projectsButtons){
             projectsButtons.addEventListener('click', (e)=>{
                 whoIsClicked = e.currentTarget.textContent;
+                deleteElementsDom();
                 printTodoElements(e.currentTarget.textContent,listProjects);
             });
         }
@@ -65,13 +66,11 @@ function Project(name){
         this.todo.push(obj);
     }
 
-    this.printTodo = (div) =>{
-        for(elem of this.todo){
-            //IDK
-        }
+    this.getTodo = () => {
+        return this.todo;
     }
 
-    return {getName,push,printTodo};
+    return {getName,push};
 }
 
 function Todo(name,description,dueDate,priority){
@@ -96,13 +95,25 @@ function populateWithProjectButton(input){
     projectSelector.appendChild(newB);
 }
 
-/* function printTodoElements(name,listProjects){
-    for(elem of listProjects){
-        if(name === elem.getName()){
-            for(let i = 0; i < elem.todo.length; i++){
-            const newDiv = document.createElement('div');
-            
+function printTodoElements(name,listProjects){
+    const selectBoard = document.querySelector('.todo-board');
+    for(let i = 0; i < listProjects.length; i++){
+        if(name === listProjects[i].getName()){
+            let todo = listProjects[i].getTodo();
+            for(let j = 0; j < todo.length; j++){
+                const newDiv = document.createElement('div');
+                newDiv.textContent = todo[j].print();
+                selectBoard.appendChild(newDiv);
             }
         }
     }
-} */
+}
+
+
+function deleteElementsDom(){
+    const selectDiv = document.querySelectorAll('.todo-board div');
+
+    for(let i = 0; i < selectDiv.length; i++){
+        selectDiv[i].parentElement.removeChild(selectDiv[i]);
+    }
+}
