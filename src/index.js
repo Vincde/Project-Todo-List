@@ -28,6 +28,38 @@ function logic() {
     });
 
 
-
     //This function gets executed only at runtime, so i cannot put the function to get the button pressed.
-})()
+})();
+
+
+function Project(name){
+    this.name = name;
+    this.todo = [];
+    
+    this.getName = () =>{
+        return this.name;
+    }
+
+    this.push = (obj) =>{
+        this.todo.push(obj);
+    }
+
+    this.printTodo = () =>{
+        for(elem of this.todo){
+            console.log(elem.print());
+        }
+    }
+
+    return {getName,push,printTodo};
+}
+
+function Todo(name,description,dueDate,priority){
+    this.name = name;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+
+    this.print = () =>{
+        return `name: ${name}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
+    }
+}

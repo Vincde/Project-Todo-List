@@ -1,1 +1,1 @@
-console.log("hheehellooo");
+!function(){const o=document.querySelector(".dashboard button:first-of-type"),t=document.querySelector(".delete");o.addEventListener("click",(()=>{})),t.addEventListener("click",(()=>{}));const e=function(o){return this.name="hwllo",this.todo=[],this.getName=()=>this.name,this.push=o=>{this.todo.push(o)},this.printTodo=()=>{for(elem of this.todo)console.log("hallo")},{getName,push,printTodo}}();console.log(e.getName()),console.log(e.push("heùallo")),console.log(e.printTodo())}();
