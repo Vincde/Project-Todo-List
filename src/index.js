@@ -23,7 +23,7 @@ function logic() {
     const delProject = document.querySelector('.delete');
 
     newProject.addEventListener('click', () => {
-        if(inputSelector && inputSelector.textContent !== '' && inputSelector.textContent !== undefined && inputSelector.textContent !== null){
+        if(inputSelector && inputSelector.value !== '' && inputSelector.value !== undefined && inputSelector.value !== null){
         let input = inputSelector.value;
 
         const newProject = Project(input);
@@ -70,7 +70,7 @@ function Project(name){
         return this.todo;
     }
 
-    return {getName,push};
+    return {getName,push,getTodo};
 }
 
 function Todo(name,description,dueDate,priority){
