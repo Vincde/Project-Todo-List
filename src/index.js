@@ -38,7 +38,7 @@ function logic() {
             projectsButtons.addEventListener('click', (e)=>{
                 whoIsClicked = e.currentTarget.textContent;
                 deleteElementsDom();
-                printTodoElements(e.currentTarget.textContent,listProjects);
+                printTodoElements(whoIsClicked,listProjects);
             });
         }
         
@@ -59,11 +59,11 @@ function logic() {
     newTodoDivDomCreation();
 
     addTodo.addEventListener('click',() =>{
-        let actualProject = whoIsClicked;
-        let name,descr,dueDate,priority;
 
+        let name;
         for(let j = 0; j < listProjects.length; j++){
-            if(listProjects[j].getName() === actualProject){
+            name = listProjects[j].getName();
+            if(name === whoIsClicked){
                 let arrayOfData = returnInfoFromDOM();
                 let newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
                 listProjects[j].push(newTodo);
@@ -102,8 +102,10 @@ function Todo(name,description,dueDate,priority){
     this.priority = priority;
 
     this.print = () =>{
-        return `name: ${name}, description: ${description}, dueDate: ${dueDate}, priority: ${priority}`;
+        return 'name:' + this.name + ' description: ' + this.description + ' duedate:' + this.dueDate + 'priority: ' + this.priority;
     }
+
+    return{print};
 }
 
 
@@ -164,8 +166,16 @@ function newTodoDivDomCreation(){
         newInput.setAttribute('id',`${inputNames[i]}`);
 
         newLabel.setAttribute('for',`${inputNames[i]}`);
+        newLabel.textContent = inputNames[i];
         newDiv.appendChild(newLabel);
         newDiv.appendChild(newInput);
+
+        
+        let attributeValue = newInput.getAttribute('id');
+        if(attributeValue === inputNames[1]){
+            newInput.style.width = '150px';
+            newInput.style.height = '150px';
+        }
     }
 
     dashboard.appendChild(newDiv);
