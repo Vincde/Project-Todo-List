@@ -21,6 +21,7 @@ function logic() {
     const inputSelector = document.querySelector('.dashboard input');
     const newProject = document.querySelector('.dashboard button:first-of-type');
     const delProject = document.querySelector('.delete');
+    const addTodo = document.querySelector('.add-todo');
 
     newProject.addEventListener('click', () => {
         if(inputSelector && inputSelector.value !== '' && inputSelector.value !== undefined && inputSelector.value !== null){
@@ -53,6 +54,21 @@ function logic() {
             }
         }
         projectDomDelete(whoIsClicked);
+    });
+
+    newTodoDivDomCreation();
+
+    addTodo.addEventListener('click',() =>{
+        let actualProject = whoIsClicked;
+        let name,descr,dueDate,priority;
+
+        for(let j = 0; j < listProjects.length; j++){
+            if(listProjects[j].getName() === actualProject){
+                let arrayOfData = returnInfoFromDOM();
+                let newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
+                listProjects[j].push(newTodo);
+            }
+        }
     });
 
 
@@ -132,4 +148,42 @@ function projectDomDelete(whoIsClicked){
             buttonSelect[i].remove();
         }
     }
+}
+
+function newTodoDivDomCreation(){
+    const dashboard = document.querySelector('.dashboard');
+    const newDiv = document.createElement('div');
+    newDiv.setAttribute('class','div-new-inputs');
+
+    let inputNames = ['name','description','due date','priority'];
+    for(let i = 0; i < 4; i++){
+        const newInput = document.createElement('input');
+        const newLabel = document.createElement('label');
+
+        newInput.setAttribute('type','text');
+        newInput.setAttribute('id',`${inputNames[i]}`);
+
+        newLabel.setAttribute('for',`${inputNames[i]}`);
+        newDiv.appendChild(newLabel);
+        newDiv.appendChild(newInput);
+    }
+
+    dashboard.appendChild(newDiv);
+}
+
+function returnInfoFromDOM(){
+    const inputButtons = document.querySelectorAll('.div-new-inputs input');
+    let info = [];
+
+    for(elem of inputButtons){
+        if(elem.value){
+            info[0] = inputButtons[0].value;
+            info[1] = inputButtons[1].value;
+            info[2] = inputButtons[2].value;
+            info[3] = inputButtons[3].value;
+        }
+    }
+
+    return info;
+    
 }
