@@ -1,5 +1,5 @@
-function logic() {
-    /* this will be the explanation of this webpage
+/* function logic() {
+    this will be the explanation of this webpage
     
     1) webpage starts
     1*)webpage has another button for deleting project(and iife gets the value of the current clicked button)
@@ -11,8 +11,8 @@ function logic() {
     6)only when clicked the newly created button prints all dom elements into the page
     7)when another button is selected the dom elements gets deleted and new ones are printed
     8)another iife gets the value of the currently clicked button and uses a button that takes a new todo and push it into the array of todos. The print function will print everything without you thinking about it
-    */
-}
+   
+} */
 
 (function webPageStarts(){
     const listProjects = [];
@@ -66,7 +66,7 @@ function logic() {
             if(name === whoIsClicked){
                 let arrayOfData = returnInfoFromDOM();
                 let newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
-                listProjects[j].push(newTodo);
+                listProjects[j].pushObj(newTodo);
             }
         }
     });
@@ -84,7 +84,7 @@ function Project(name){
         return this.name;
     }
 
-    this.push = (obj) =>{
+    this.pushObj = (obj) =>{
         this.todo.push(obj);
     }
 
@@ -92,7 +92,7 @@ function Project(name){
         return this.todo;
     }
 
-    return {getName,push,getTodo};
+    return {getName,pushObj,getTodo};
 }
 
 function Todo(name,description,dueDate,priority){
@@ -183,16 +183,12 @@ function newTodoDivDomCreation(){
 
 function returnInfoFromDOM(){
     const inputButtons = document.querySelectorAll('.div-new-inputs input');
-    let info = [];
-
-    for(elem of inputButtons){
-        if(elem.value){
+    let info = [0,0,0,0];
+    
             info[0] = inputButtons[0].value;
             info[1] = inputButtons[1].value;
             info[2] = inputButtons[2].value;
             info[3] = inputButtons[3].value;
-        }
-    }
 
     return info;
     
