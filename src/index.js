@@ -46,7 +46,13 @@ function logic() {
 
     
     delProject.addEventListener('click', () =>{
-        //Add function to delete it
+        deleteElementsDom();
+        for(let i = 0; i < listProjects.length; i++){
+            if(listProjects[i].getName() === whoIsClicked){
+                listProjects.slice(i,1);
+            }
+        }
+        projectDomDelete(whoIsClicked);
     });
 
 
@@ -115,5 +121,15 @@ function deleteElementsDom(){
 
     for(let i = 0; i < selectDiv.length; i++){
         selectDiv[i].parentElement.removeChild(selectDiv[i]);
+    }
+}
+
+function projectDomDelete(whoIsClicked){
+    const buttonSelect = document.querySelectorAll('.projects button');
+
+    for(let i = 0; i < buttonSelect.length; i++){
+        if(buttonSelect[i].textContent === whoIsClicked){
+            buttonSelect[i].remove();
+        }
     }
 }
