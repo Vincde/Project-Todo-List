@@ -24,7 +24,7 @@
     const addTodo = document.querySelector('.add-todo');
 
     newProject.addEventListener('click', () => {
-        if(inputSelector && inputSelector.value !== undefined && inputSelector.value !== null){
+        
         let input = inputSelector.value;
 
         const newProject = Project(input);
@@ -35,14 +35,15 @@
         let projectsButtons = document.querySelector('.projects button:last-of-type');
 
         
-            projectsButtons.addEventListener('click', (e)=>{
-                whoIsClicked = e.currentTarget.textContent;
-                deleteElementsDom();
-                printTodoElements(whoIsClicked,listProjects);
-            });
+        projectsButtons.addEventListener('click', (e)=>{
+            whoIsClicked = e.currentTarget.textContent;
+            deleteElementsDom();
+            printTodoElements(whoIsClicked,listProjects);
+        });
         
-        }
     });
+
+    
 
     
     delProject.addEventListener('click', () =>{
