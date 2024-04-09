@@ -24,7 +24,7 @@
     const addTodo = document.querySelector('.add-todo');
 
     newProject.addEventListener('click', () => {
-        if(inputSelector && inputSelector.value !== '' && inputSelector.value !== undefined && inputSelector.value !== null){
+        if(inputSelector && inputSelector.value !== undefined && inputSelector.value !== null){
         let input = inputSelector.value;
 
         const newProject = Project(input);
@@ -32,15 +32,14 @@
         
         populateWithProjectButton(input);
 
-        const projectsButtons = document.querySelector('.projects button:last-of-type');
+        let projectsButtons = document.querySelector('.projects button:last-of-type');
 
-        if(projectsButtons){
+        
             projectsButtons.addEventListener('click', (e)=>{
                 whoIsClicked = e.currentTarget.textContent;
                 deleteElementsDom();
                 printTodoElements(whoIsClicked,listProjects);
             });
-        }
         
         }
     });
@@ -119,10 +118,10 @@ function populateWithProjectButton(input){
     projectSelector.appendChild(newB);
 }
 
-function printTodoElements(name,listProjects){
+function printTodoElements(whoIsClicked,listProjects){
     const selectBoard = document.querySelector('.todo-board');
     for(let i = 0; i < listProjects.length; i++){
-        if(name === listProjects[i].getName()){
+        if(whoIsClicked === listProjects[i].getName()){
             let todo = listProjects[i].getTodo();
             for(let j = 0; j < todo.length; j++){
                 const newDiv = document.createElement('div');
