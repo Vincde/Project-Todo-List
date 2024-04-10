@@ -36,14 +36,12 @@
 
         
         projectsButtons.addEventListener('click', (e)=>{
-            whoIsClicked = e.currentTarget.textContent;
+            whoIsClicked = projectsButtons.textContent;
             deleteElementsDom();
             printTodoElements(whoIsClicked,listProjects);
         });
         
     });
-
-    
 
     
     delProject.addEventListener('click', () =>{
@@ -96,13 +94,13 @@ function Project(name){
 }
 
 function Todo(name,description,dueDate,priority){
-    this.name = name;
+    this.todoName = name;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
 
-    this.print = () =>{
-        return 'name:' + this.name + ' description: ' + this.description + ' duedate:' + this.dueDate + 'priority: ' + this.priority;
+    this.print = () =>{  //had to change name of todo
+        return 'name:' + this.todoName + ' description: ' + this.description + ' duedate:' + this.dueDate + 'priority: ' + this.priority;
     }
 
     return{print};
@@ -125,8 +123,8 @@ function printTodoElements(whoIsClicked,listProjects){
         if(whoIsClicked === listProjects[i].getName()){
             let todo = listProjects[i].getTodo();
             for(let j = 0; j < todo.length; j++){
-                const newDiv = document.createElement('div');
-                newDiv.textContent = todo[j].print();
+                let newDiv = document.createElement('div');
+                newDiv.textContent = (todo[j].print());
                 selectBoard.appendChild(newDiv);
             }
         }
