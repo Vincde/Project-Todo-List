@@ -99,11 +99,11 @@ function Todo(name,description,dueDate,priority){
     this.dueDate = dueDate;
     this.priority = priority;
 
-    this.print = () =>{  //had to change name of todo
+    this.printIt = () =>{  //had to change name of todo
         return 'name:' + this.todoName + ' description: ' + this.description + ' duedate:' + this.dueDate + 'priority: ' + this.priority;
     }
 
-    return{print};
+    return{printIt};
 }
 
 
@@ -124,7 +124,7 @@ function printTodoElements(whoIsClicked,listProjects){
             let todo = listProjects[i].getTodo();
             for(let j = 0; j < todo.length; j++){
                 let newDiv = document.createElement('div');
-                newDiv.textContent = (todo[j].print());
+                newDiv.textContent = (todo[j].printIt());
                 selectBoard.appendChild(newDiv);
             }
         }
