@@ -57,14 +57,16 @@
     newTodoDivDomCreation();
 
     addTodo.addEventListener('click',() =>{
+        let arrayOfData;
+        let name,newTodo;
 
-        let name;
         for(let j = 0; j < listProjects.length; j++){
             name = listProjects[j].getName();
             if(name === whoIsClicked){
-                let arrayOfData = returnInfoFromDOM();
-                let newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
+                arrayOfData = returnInfoFromDOM();
+                newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
                 listProjects[j].pushObj(newTodo);
+                newTodo = null;
             }
         }
     });
@@ -100,7 +102,7 @@ function Todo(name,description,dueDate,priority){
     this.priority = priority;
 
     this.printIt = () =>{  //had to change name of todo
-        return 'name:' + this.todoName + ' description: ' + this.description + ' duedate:' + this.dueDate + 'priority: ' + this.priority;
+        return `name:  ${this.todoName}   description:   ${this.description}  duedate:  ${this.dueDate}  priority: ${this.priority}`;
     }
 
     return{printIt};
