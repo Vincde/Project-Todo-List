@@ -58,15 +58,15 @@
 
     addTodo.addEventListener('click',() =>{
         let arrayOfData;
-        let name,newTodo;
+        let name;
+        
 
         for(let j = 0; j < listProjects.length; j++){
             name = listProjects[j].getName();
             if(name === whoIsClicked){
                 arrayOfData = returnInfoFromDOM();
-                newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
+                const newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
                 listProjects[j].pushObj(newTodo);
-                newTodo = null;
             }
         }
     });
@@ -84,8 +84,8 @@ function Project(name){
         return this.name;
     }
 
-    this.pushObj = (obj) =>{
-        this.todo.push(obj);
+    this.pushObj = (newTodo) =>{
+        this.todo.push(newTodo);
     }
 
     this.getTodo = () => {
