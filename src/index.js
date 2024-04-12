@@ -66,7 +66,9 @@
             if(name === whoIsClicked){
                 arrayOfData = returnInfoFromDOM();
                 const newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
+                const newTodo2 = Todo('ciao','sono','vicn','f');
                 listProjects[j].pushObj(newTodo);
+                listProjects[j].pushObj(newTodo2);
             }
         }
     });
@@ -85,7 +87,7 @@ function Project(name){
     }
 
     this.pushObj = (newTodo) =>{
-        this.todo.push(newTodo);
+        this.todo[this.todo.length] = newTodo;
     }
 
     this.getTodo = () => {
@@ -101,8 +103,8 @@ function Todo(name,description,dueDate,priority){
     this.dueDate = dueDate;
     this.priority = priority;
 
-    this.printIt = () =>{  //had to change name of todo
-        return `name:  ${this.todoName}   description:   ${this.description}  duedate:  ${this.dueDate}  priority: ${this.priority}`;
+    const printIt = () =>{  //had to change name of todo
+        return `name:  ${todoName}   description:   ${description}  duedate:  ${dueDate}  priority: ${priority}`;
     }
 
     return{printIt};
