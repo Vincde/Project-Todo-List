@@ -58,12 +58,13 @@
 
     addTodo.addEventListener('click',() =>{
         let arrayOfData;
-        let name;
+        let projectName;
         
 
         for(let j = 0; j < listProjects.length; j++){
-            name = listProjects[j].getName();
-            if(name === whoIsClicked){
+            projectName = listProjects[j].getName();
+
+            if(projectName === whoIsClicked){
                 arrayOfData = returnInfoFromDOM();
                 const newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
                 listProjects[j].pushObj(newTodo);
@@ -84,15 +85,15 @@ function Project(name){
         return name;
     }
 
-    const pushObj = (newTodo) =>{
-        todo[todo.length] = newTodo;
+    this.pushObj = (newTodo) =>{
+        this.todo[todo.length] = newTodo;
     }
 
-    const getTodo = () => {
+    this.getTodo = () => {
         return this.todo;
     }
 
-    return {getName,pushObj,getTodo};
+    return {getName,pushObj,getTodo,todo};
 }
 
 function Todo(todoName,description,dueDate,priority){
@@ -105,7 +106,7 @@ function Todo(todoName,description,dueDate,priority){
         return `name:  ${todoName}   description:   ${description}  duedate:  ${dueDate}  priority: ${priority}`;
     }
 
-    return{printIt};
+    return{printIt,todoName};
 }
 
 
@@ -123,10 +124,10 @@ function printTodoElements(whoIsClicked,listProjects){
     const selectBoard = document.querySelector('.todo-board');
     for(let i = 0; i < listProjects.length; i++){
         if(whoIsClicked === listProjects[i].getName()){
-            let todo = listProjects[i].getTodo();
-            for(let j = 0; j < todo.length; j++){
+            let varTodo = listProjects[i].getTodo();
+            for(let j = 0; j < varTodo.length; j++){
                 let newDiv = document.createElement('div');
-                newDiv.textContent = (todo[j].printIt());
+                newDiv.textContent = (varTodo[j].printIt());
                 selectBoard.appendChild(newDiv);
             }
         }
@@ -135,16 +136,14 @@ function printTodoElements(whoIsClicked,listProjects){
 
 
 function deleteElementsDom(){
-    const selectDiv = document.querySelectorAll('.todo-board > div');
-    if(selectDiv){
-        for(let i = 0; i < selectDiv.length; i++){
-            selectDiv[i].parentElement.removeChild(selectDiv[i]);
-        }
-    }else{
-         let selectDivSingle = document.querySelector('.todo-board > div');
-         selectDivSingle.parentElement.removeChild(selectDiv);
+    const selectDiv = document.querySelectorAll('.todo-board *');
+
+    for(let i = 0; i < selectDiv.length; i++){
+        selectDiv[i].textContent = '';
+        selectDiv[i].remove();
     }
 }
+
 
 function projectDomDelete(whoIsClicked){
     const buttonSelect = document.querySelectorAll('.projects button');
