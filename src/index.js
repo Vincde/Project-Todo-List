@@ -80,15 +80,15 @@ function Project(name){
     this.name = name;
     this.todo = [];
     
-    this.getName = () =>{
-        return this.name;
+    const getName = () =>{
+        return name;
     }
 
-    this.pushObj = (newTodo) =>{
-        this.todo[this.todo.length] = newTodo;
+    const pushObj = (newTodo) =>{
+        todo[todo.length] = newTodo;
     }
 
-    this.getTodo = () => {
+    const getTodo = () => {
         return this.todo;
     }
 
@@ -135,10 +135,14 @@ function printTodoElements(whoIsClicked,listProjects){
 
 
 function deleteElementsDom(){
-    const selectDiv = document.querySelectorAll('.todo-board div');
-
-    for(let i = 0; i < selectDiv.length; i++){
-        selectDiv[i].parentElement.removeChild(selectDiv[i]);
+    const selectDiv = document.querySelectorAll('.todo-board > div');
+    if(selectDiv){
+        for(let i = 0; i < selectDiv.length; i++){
+            selectDiv[i].parentElement.removeChild(selectDiv[i]);
+        }
+    }else{
+         let selectDivSingle = document.querySelector('.todo-board > div');
+         selectDivSingle.parentElement.removeChild(selectDiv);
     }
 }
 
