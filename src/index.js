@@ -68,6 +68,7 @@
                 arrayOfData = returnInfoFromDOM();
                 const newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
                 listProjects[j].pushObj(newTodo);
+                /* makeNewTodoExpand */
             }
         }
     });
@@ -78,19 +79,19 @@
 
 
 function Project(name){
-    this.name = name;
-    this.todo = [];
+    this.name = name;  //It is probable that some problems might be caused by the this.name ... If true just delete the this
+    let todo = [];
     
     const getName = () =>{
         return name;
     }
 
     this.pushObj = (newTodo) =>{
-        this.todo[todo.length] = newTodo;
+        todo[todo.length] = newTodo;
     }
 
     this.getTodo = () => {
-        return this.todo;
+        return todo;
     }
 
     return {getName,pushObj,getTodo,todo};
@@ -103,7 +104,7 @@ function Todo(todoName,description,dueDate,priority){
     this.priority = priority;
 
     const printIt = () =>{  //had to change name of todo
-        return `name:  ${todoName}   description:   ${description}  duedate:  ${dueDate}  priority: ${priority}`;
+        return `name:  ${todoName} priority: ${priority}`;
     }
 
     return{printIt,todoName};
