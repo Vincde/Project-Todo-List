@@ -68,7 +68,6 @@
                 arrayOfData = returnInfoFromDOM();
                 const newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
                 listProjects[j].pushObj(newTodo);
-                /* makeNewTodoExpand */
             }
         }
     });
@@ -107,7 +106,11 @@ function Todo(todoName,description,dueDate,priority){
         return `name:  ${todoName} priority: ${priority}`;
     }
 
-    return{printIt,todoName};
+    const printItExpanded = () =>{
+        return `name: ${todoName} description: ${description} duedate: ${dueDate}priority: ${priority}`;
+    }
+
+    return{printIt,printItExpanded};
 }
 
 
@@ -130,6 +133,7 @@ function printTodoElements(whoIsClicked,listProjects){
                 let newDiv = document.createElement('div');
                 newDiv.textContent = (varTodo[j].printIt());
                 selectBoard.appendChild(newDiv);
+                makeDivExpand(varTodo[j]);
             }
         }
     }
@@ -195,5 +199,20 @@ function returnInfoFromDOM(){
             info[3] = inputButtons[3].value;
 
     return info;
+    
+}
+
+function makeDivExpand(todoElement){
+    const divToExpand = document.querySelector('.todo-board div:last-of-type');
+
+    divToExpand.addEventListener('click', (e)=>{
+        
+        if(divToExpand.textContent === todoElement.printIt()){
+        divToExpand.textContent = todoElement.printItExpanded();
+        }else{
+            divToExpand.textContent = todoElement.printIt();
+        }
+    });
+
     
 }
