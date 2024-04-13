@@ -130,9 +130,19 @@ function printTodoElements(whoIsClicked,listProjects){
         if(whoIsClicked === listProjects[i].getName()){
             let varTodo = listProjects[i].getTodo();
             for(let j = 0; j < varTodo.length; j++){
-                let newDiv = document.createElement('div');
-                newDiv.textContent = (varTodo[j].printIt());
-                selectBoard.appendChild(newDiv);
+                let newDivFather = document.createElement('div');
+                let newDivChild = document.createElement('div');
+                newDivChild.textContent = (varTodo[j].printIt());
+                selectBoard.appendChild(newDivFather);
+                newDivFather.appendChild(newDivChild)
+                
+
+                const deleteTodoButton = document.createElement('button');
+                deleteTodoButton.setAttribute('type','button');
+                deleteTodoButton.textContent = 'Delete This Todo';
+                deleteTodoButton.setAttribute('class','delButton');
+                newDivFather.appendChild(deleteTodoButton);
+
                 makeDivExpand(varTodo[j]);
             }
         }
@@ -203,16 +213,23 @@ function returnInfoFromDOM(){
 }
 
 function makeDivExpand(todoElement){
-    const divToExpand = document.querySelector('.todo-board div:last-of-type');
+    const divToExpand = document.querySelector('.todo-board div > div:last-of-type');
+    const deleteButtonDiv = document.querySelector('.delButton');
 
+    const divs = document.querySelector('.todo-board div:last-of-type');
+    divs.style.display = 'flex';
+    
+    deleteButtonDiv.style.visibility = 'hidden';
+    
     divToExpand.addEventListener('click', (e)=>{
         
         if(divToExpand.textContent === todoElement.printIt()){
-        divToExpand.textContent = todoElement.printItExpanded();
+            divToExpand.textContent = todoElement.printItExpanded();
+            deleteButtonDiv.style.visibility = 'visible';
         }else{
             divToExpand.textContent = todoElement.printIt();
+            deleteButtonDiv.style.visibility = 'hidden';
         }
     });
-
     
 }
