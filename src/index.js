@@ -235,6 +235,7 @@ function makeDivExpand(todoElement){
             divToExpand.textContent = todoElement.printIt();
             deleteButtonDiv.style.visibility = 'hidden';
         }
+
     });
     
 }
