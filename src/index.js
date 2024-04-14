@@ -110,7 +110,11 @@ function Todo(todoName,description,dueDate,priority){
         return `name: ${todoName} description: ${description} duedate: ${dueDate}priority: ${priority}`;
     }
 
-    return{printIt,printItExpanded};
+    const getNameOfTodo = () =>{
+        return todoName;
+    }
+
+    return{printIt,printItExpanded,getNameOfTodo};
 }
 
 
@@ -144,6 +148,7 @@ function printTodoElements(whoIsClicked,listProjects){
                 newDivFather.appendChild(deleteTodoButton);
 
                 makeDivExpand(varTodo[j]);
+                /* deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects); */
             }
         }
     }
@@ -213,8 +218,8 @@ function returnInfoFromDOM(){
 }
 
 function makeDivExpand(todoElement){
-    const divToExpand = document.querySelector('.todo-board div > div:last-of-type');
-    const deleteButtonDiv = document.querySelector('.delButton');
+    const divToExpand = document.querySelector('.todo-board div:last-of-type > div:last-of-type');
+    const deleteButtonDiv = document.querySelector('.todo-board div:last-of-type button');
 
     const divs = document.querySelector('.todo-board div:last-of-type');
     divs.style.display = 'flex';
@@ -232,4 +237,15 @@ function makeDivExpand(todoElement){
         }
     });
     
+}
+
+function deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects){
+    const selectButton = document.querySelector('.todo-board div:last-of-type button');
+
+
+    selectButton.addEventListener('click', () =>{
+        varTodo.slice(j,1);
+        deleteElementsDom();
+        printTodoElements(whoIsClicked,listProjects);
+    });
 }
