@@ -148,7 +148,7 @@ function printTodoElements(whoIsClicked,listProjects){
                 newDivFather.appendChild(deleteTodoButton);
 
                 makeDivExpand(varTodo[j]);
-                /* deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects); */
+                deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects,i);
             }
         }
     }
@@ -240,13 +240,13 @@ function makeDivExpand(todoElement){
     
 }
 
-function deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects){
-    const selectButton = document.querySelector('.todo-board div:last-of-type button');
+function deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects,i){
+    const selectButton = document.querySelector('.todo-board > div:last-of-type > button');
 
 
-    selectButton.addEventListener('click', () =>{
-        varTodo.slice(j,1);
+    selectButton.addEventListener('click', (event) =>{
+        varTodo = varTodo.splice(j,1);
         deleteElementsDom();
-        printTodoElements(whoIsClicked,listProjects);
+        event.stopPropagation();  //event NEEDS to be at the end or just deactivates all
     });
 }
