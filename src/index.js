@@ -221,7 +221,7 @@ function makeDivExpand(todoElement){
     const divToExpand = document.querySelector('.todo-board div:last-of-type > div:last-of-type');
     const deleteButtonDiv = document.querySelector('.todo-board div:last-of-type button');
 
-    const divs = document.querySelector('.todo-board div:last-of-type');
+    let divs = document.querySelector('.todo-board > div:last-of-type');
     divs.style.display = 'flex';
     
     deleteButtonDiv.style.visibility = 'hidden';
