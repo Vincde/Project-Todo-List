@@ -148,7 +148,7 @@ function printTodoElements(whoIsClicked,listProjects){
                 newDivFather.appendChild(deleteTodoButton);
 
                 makeDivExpand(varTodo[j]);
-                deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects,i);
+                deleteTodoButtonLogic(varTodo,j);
             }
         }
     }
@@ -240,7 +240,7 @@ function makeDivExpand(todoElement){
     
 }
 
-function deleteTodoButtonLogic(varTodo,j,whoIsClicked,listProjects,i){
+function deleteTodoButtonLogic(varTodo,j){
     const selectButton = document.querySelector('.todo-board > div:last-of-type > button');
 
 
