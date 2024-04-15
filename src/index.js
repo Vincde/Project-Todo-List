@@ -1,3 +1,4 @@
+import {parse as dateFns,format} from 'date-fns'
 /* function logic() {
     this will be the explanation of this webpage
     
@@ -66,7 +67,9 @@
 
             if(projectName === whoIsClicked){
                 arrayOfData = returnInfoFromDOM();
-                const newTodo = Todo(arrayOfData[0],arrayOfData[1],arrayOfData[2],arrayOfData[3]);
+                let newDate = dateFns(arrayOfData[2], 'dd/MM/yyyy', new Date());
+                newDate = format(newDate, 'dd MM yyyy');
+                const newTodo = Todo(arrayOfData[0],arrayOfData[1],newDate,arrayOfData[3]);
                 listProjects[j].pushObj(newTodo);
             }
         }
@@ -78,18 +81,18 @@
 
 
 function Project(name){
-    this.name = name;  //It is probable that some problems might be caused by the this.name ... If true just delete the this
+    name = name;  //It is probable that some problems might be caused by the this.name ... If true just delete the this
     let todo = [];
     
     const getName = () =>{
         return name;
     }
 
-    this.pushObj = (newTodo) =>{
+    const pushObj = (newTodo) =>{
         todo[todo.length] = newTodo;
     }
 
-    this.getTodo = () => {
+    const getTodo = () => {
         return todo;
     }
 
@@ -97,10 +100,10 @@ function Project(name){
 }
 
 function Todo(todoName,description,dueDate,priority){
-    this.todoName = todoName;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
+    todoName = todoName;
+    description = description;
+    dueDate = dueDate;
+    priority = priority;
 
     const printIt = () =>{  //had to change name of todo
         return `name:  ${todoName} priority: ${priority}`;
