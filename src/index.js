@@ -113,8 +113,31 @@ function Todo(todoName,description,dueDate,priority){
     const getNameOfTodo = () =>{
         return todoName;
     }
+    const getDescr = () =>{
+        return description;
+    }
+    const getPriority = () =>{
+        return priority;
+    }
+    const getDueDate = () =>{
+        return dueDate;
+    }
 
-    return{printIt,printItExpanded,getNameOfTodo};
+    const setName = (newName) =>{
+        todoName = newName;
+    }
+    const setDescr = (newDescr) =>{
+        description = newDescr;
+    }
+    const setDueDate = (newDueDate) =>{
+        dueDate = newDueDate;
+    }
+    const setPriority = (newPriority) =>{
+        priority = newPriority;
+    }
+
+
+    return{printIt,printItExpanded,getNameOfTodo,getDescr,getPriority,getDueDate,setName,setDescr,setDueDate,setPriority};
 }
 
 
@@ -147,8 +170,14 @@ function printTodoElements(whoIsClicked,listProjects){
                 deleteTodoButton.setAttribute('class','delButton');
                 newDivFather.appendChild(deleteTodoButton);
 
+                const editButton = document.createElement('button');
+                editButton.setAttribute('type','button');
+                editButton.textContent = 'Edit this Todo';
+                newDivFather.appendChild(editButton);
+
                 makeDivExpand(varTodo[j]);
                 deleteTodoButtonLogic(varTodo,j);
+                editBttn(varTodo,j);
             }
         }
     }
@@ -220,20 +249,24 @@ function returnInfoFromDOM(){
 function makeDivExpand(todoElement){
     const divToExpand = document.querySelector('.todo-board div:last-of-type > div:last-of-type');
     const deleteButtonDiv = document.querySelector('.todo-board div:last-of-type button');
+    const editButton = document.querySelector('.todo-board div:last-of-type button:last-of-type');
 
     let divs = document.querySelector('.todo-board > div:last-of-type');
     divs.style.display = 'flex';
     
     deleteButtonDiv.style.visibility = 'hidden';
+    editButton.style.visibility = 'hidden';
     
     divToExpand.addEventListener('click', (e)=>{
         
         if(divToExpand.textContent === todoElement.printIt()){
             divToExpand.textContent = todoElement.printItExpanded();
             deleteButtonDiv.style.visibility = 'visible';
+            editButton.style.visibility = 'visible';
         }else{
             divToExpand.textContent = todoElement.printIt();
             deleteButtonDiv.style.visibility = 'hidden';
+            editButton.style.visibility = 'hidden';
         }
 
     });
@@ -245,8 +278,33 @@ function deleteTodoButtonLogic(varTodo,j){
 
 
     selectButton.addEventListener('click', (event) =>{
-        varTodo = varTodo.splice(j,1);
+        varTodo.splice(j,1);
         deleteElementsDom();
         event.stopPropagation();  //event NEEDS to be at the end or just deactivates all
+    });
+}
+
+
+function editBttn(varTodo,j){
+    const editButton = document.querySelector('.todo-board > div:last-of-type > button:last-of-type');
+    const inputs = document.querySelectorAll('.div-new-inputs input');
+
+    editButton.addEventListener('click', ()=>{
+        
+        if(editButton.textContent === 'Edit this Todo'){
+        editButton.textContent = 'Apply Changes';
+        inputs[0].value = varTodo[j].getNameOfTodo();
+        inputs[1].value = varTodo[j].getDescr();
+        inputs[2].value = varTodo[j].getDueDate();
+        inputs[3].value = varTodo[j].getPriority();
+        }else if(editButton.textContent === 'Apply Changes'){
+            varTodo[j].setName(inputs[0].value);
+            varTodo[j].setDescr(inputs[1].value);
+            varTodo[j].setDueDate(inputs[2].value);
+            varTodo[j].setPriority(inputs[3].value);
+            deleteElementsDom();
+            editButton.textContent = 'Edit this Todo';
+        }
+
     });
 }
