@@ -16,8 +16,12 @@ import {parse as dateFns,format} from 'date-fns'
 } */
 
 (function webPageStarts(){
-    const listProjects = [];
+    let listProjects = [];
     let whoIsClicked;
+
+    if(localStorage.getItem("projects")){
+        listProjects = localStorage.setItem
+    }
 
     const inputSelector = document.querySelector('.dashboard input');
     const newProject = document.querySelector('.dashboard button:first-of-type');
@@ -42,6 +46,16 @@ import {parse as dateFns,format} from 'date-fns'
             printTodoElements(whoIsClicked,listProjects);
         });
         
+
+        let getNameString = listProjects[listProjects.length-1].getName.toString();
+        let pushObjString = listProjects[listProjects.length-1].pushObj.toString();
+        let getTodoString = listProjects[listProjects.length-1].getTodo.toString();
+
+        localStorage.setItem("projects",JSON.stringify(listProjects[listProjects.length-1]));
+        localStorage.setItem("projects",JSON.stringify(getNameString));
+        localStorage.setItem("projects",JSON.stringify(pushObjString));
+        localStorage.setItem("projects",JSON.stringify(getTodoString));
+
     });
 
     
