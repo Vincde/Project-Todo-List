@@ -20,7 +20,12 @@ import {parse as dateFns,format} from 'date-fns'
     let whoIsClicked;
 
     if(localStorage.getItem("projects")){
-        listProjects = localStorage.setItem
+        listProjects = JSON.parse(localStorage.getItem("projects"));
+        for(let key of listProjects){
+            key["getName"] =  eval(JSON.parse(localStorage.getItem("name")));
+            key["pushObj"] = eval(JSON.parse(localStorage.getItem("push")));
+            key["getTodo"] =  eval(JSON.parse(localStorage.getItem("todo")));
+        }
     }
 
     const inputSelector = document.querySelector('.dashboard input');
@@ -52,9 +57,9 @@ import {parse as dateFns,format} from 'date-fns'
         let getTodoString = listProjects[listProjects.length-1].getTodo.toString();
 
         localStorage.setItem("projects",JSON.stringify(listProjects[listProjects.length-1]));
-        localStorage.setItem("projects",JSON.stringify(getNameString));
-        localStorage.setItem("projects",JSON.stringify(pushObjString));
-        localStorage.setItem("projects",JSON.stringify(getTodoString));
+        localStorage.setItem("name",JSON.stringify(getNameString));
+        localStorage.setItem("push",JSON.stringify(pushObjString));
+        localStorage.setItem("todo",JSON.stringify(getTodoString));
 
     });
 
