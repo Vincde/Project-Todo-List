@@ -18,14 +18,29 @@ import {parse as dateFns,format} from 'date-fns'
 (function webPageStarts(){
     let listProjects = [];
     let whoIsClicked;
+    let projectsButtons;
+
 
     if(localStorage.getItem("projects")){
         listProjects = JSON.parse(localStorage.getItem("projects"));
+        listProjects = listProjects ? [listProjects] : [];
         for(let key of listProjects){
-            key["getName"] =  eval(JSON.parse(localStorage.getItem("name")));
-            key["pushObj"] = eval(JSON.parse(localStorage.getItem("push")));
-            key["getTodo"] =  eval(JSON.parse(localStorage.getItem("todo")));
+            key["getName"] =  eval((JSON.parse(localStorage.getItem("name"))));
+            key["pushObj"] = eval((JSON.parse(localStorage.getItem("push"))));
+            key["getTodo"] =  eval((JSON.parse(localStorage.getItem("todo"))));
+            populateWithProjectButton(key.getName());
+        
+        projectsButtons = document.querySelector('.projects button:last-of-type');
+
+        
+            projectsButtons.addEventListener('click', (e)=>{
+                whoIsClicked = projectsButtons.textContent;
+                deleteElementsDom();
+                printTodoElements(whoIsClicked,listProjects);
+            });
         }
+        
+
     }
 
     const inputSelector = document.querySelector('.dashboard input');
@@ -42,7 +57,7 @@ import {parse as dateFns,format} from 'date-fns'
         
         populateWithProjectButton(input);
 
-        let projectsButtons = document.querySelector('.projects button:last-of-type');
+        projectsButtons = document.querySelector('.projects button:last-of-type');
 
         
         projectsButtons.addEventListener('click', (e)=>{
@@ -51,15 +66,16 @@ import {parse as dateFns,format} from 'date-fns'
             printTodoElements(whoIsClicked,listProjects);
         });
         
+        let anyString = ' ';
+        let getNameString = listProjects[0].getName.toString();
+        console.log(getNameString);
+        let pushObjString = anyString + listProjects[0].pushObj;
+        let getTodoString = anyString + listProjects[0].getTodo;
 
-        let getNameString = listProjects[listProjects.length-1].getName.toString();
-        let pushObjString = listProjects[listProjects.length-1].pushObj.toString();
-        let getTodoString = listProjects[listProjects.length-1].getTodo.toString();
-
-        localStorage.setItem("projects",JSON.stringify(listProjects[listProjects.length-1]));
-        localStorage.setItem("name",JSON.stringify(getNameString));
-        localStorage.setItem("push",JSON.stringify(pushObjString));
-        localStorage.setItem("todo",JSON.stringify(getTodoString));
+        localStorage.setItem("projects",JSON.stringify(listProjects));
+        localStorage.setItem("name",getNameString);
+        localStorage.setItem("push",pushObjString);
+        localStorage.setItem("todo",getTodoString);
 
     });
 
