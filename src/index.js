@@ -343,7 +343,7 @@ function retrieveStorage(listProjects,whoIsClicked){
         /* for(let j = 0; j < numberOfTodoS.length; j++){
             varTodo[j] = Todo(numberOfTodoS.nameT,numberOfTodoS.descrT,numberOfTodoS.prioT,dueDaT);
         } */
-        while(numberOfTodoS[counter].nameT !== ' '){
+        while(numberOfTodoS[counter] !== ' '){
             varTodo[counter] = Todo(numberOfTodoS[counter].nameT,numberOfTodoS[counter].descrT,numberOfTodoS[counter].prioT,numberOfTodoS[counter].dueDaT);
             counter++;
         }
@@ -374,8 +374,7 @@ function setItem(listProjects){
                 h++;
             }
         }
-        nameT = ' ';
-        todoS[h] = {nameT};
+        todoS[h] = ' ';
         h++;
     }
     localStorage.setItem("nameS",JSON.stringify(nameS));
