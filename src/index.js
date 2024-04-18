@@ -16,32 +16,8 @@ import {parse as dateFns,format} from 'date-fns'
 } */
 
 (function webPageStarts(){
-    let listProjects = [];
+    const listProjects = [];
     let whoIsClicked;
-    let projectsButtons;
-
-
-    if(localStorage.getItem("projects")){
-        listProjects = JSON.parse(localStorage.getItem("projects"));
-        listProjects = listProjects ? [listProjects] : [];
-        for(let key of listProjects){
-            key["getName"] =  eval((JSON.parse(localStorage.getItem("name"))));
-            key["pushObj"] = eval((JSON.parse(localStorage.getItem("push"))));
-            key["getTodo"] =  eval((JSON.parse(localStorage.getItem("todo"))));
-            populateWithProjectButton(key.getName());
-        
-        projectsButtons = document.querySelector('.projects button:last-of-type');
-
-        
-            projectsButtons.addEventListener('click', (e)=>{
-                whoIsClicked = projectsButtons.textContent;
-                deleteElementsDom();
-                printTodoElements(whoIsClicked,listProjects);
-            });
-        }
-        
-
-    }
 
     const inputSelector = document.querySelector('.dashboard input');
     const newProject = document.querySelector('.dashboard button:first-of-type');
@@ -57,7 +33,7 @@ import {parse as dateFns,format} from 'date-fns'
         
         populateWithProjectButton(input);
 
-        projectsButtons = document.querySelector('.projects button:last-of-type');
+        let projectsButtons = document.querySelector('.projects button:last-of-type');
 
         
         projectsButtons.addEventListener('click', (e)=>{
@@ -66,17 +42,6 @@ import {parse as dateFns,format} from 'date-fns'
             printTodoElements(whoIsClicked,listProjects);
         });
         
-        let anyString = ' ';
-        let getNameString = listProjects[0].getName.toString();
-        console.log(getNameString);
-        let pushObjString = anyString + listProjects[0].pushObj;
-        let getTodoString = anyString + listProjects[0].getTodo;
-
-        localStorage.setItem("projects",JSON.stringify(listProjects));
-        localStorage.setItem("name",getNameString);
-        localStorage.setItem("push",pushObjString);
-        localStorage.setItem("todo",getTodoString);
-
     });
 
     
