@@ -321,11 +321,12 @@ function editBttn(varTodo,j){
 function retrieveStorage(listProjects,whoIsClicked){
     let numberOfProjects = JSON.parse(localStorage.getItem("nameS"));
     let numberOfTodoS = JSON.parse(localStorage.getItem("todoS"));
+    let counter = 0;
 
     for(let i = 0; i < numberOfProjects.length; i++){
         listProjects[i] = Project(numberOfProjects[i]);
 
-        populateWithProjectButton(input);
+        populateWithProjectButton(numberOfProjects[i]);
 
         let projectsButtons = document.querySelector('.projects button:last-of-type');
 
@@ -338,8 +339,13 @@ function retrieveStorage(listProjects,whoIsClicked){
     
 
         let varTodo = listProjects[i].getTodo();
-        for(let j = 0; j < numberOfTodoS.length; j++){
+
+        /* for(let j = 0; j < numberOfTodoS.length; j++){
             varTodo[j] = Todo(numberOfTodoS.nameT,numberOfTodoS.descrT,numberOfTodoS.prioT,dueDaT);
+        } */
+        while(numberOfTodoS[counter].nameT !== ' '){
+            varTodo[counter] = Todo(numberOfTodoS[counter].nameT,numberOfTodoS[counter].descrT,numberOfTodoS[counter].prioT,numberOfTodoS[counter].dueDaT);
+            counter++;
         }
     }
 
@@ -365,9 +371,12 @@ function setItem(listProjects){
                 prioT = varTodo[j].getPriority();
                 dueDaT = varTodo[j].getDueDate();
                 todoS[h] = {nameT,descrT,prioT,dueDaT};
-                h++;   //since the array returns and stores all todos : Get an array in the iife function that stores the numbers for each todo array, then in retrieveStorage use it to divide them.
+                h++;
             }
         }
+        nameT = ' ';
+        todoS[h] = {nameT};
+        h++;
     }
     localStorage.setItem("nameS",JSON.stringify(nameS));
     localStorage.setItem("todoS",JSON.stringify(todoS));
