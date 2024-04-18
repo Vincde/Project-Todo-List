@@ -16,8 +16,12 @@ import {parse as dateFns,format} from 'date-fns'
 } */
 
 (function webPageStarts(){
-    const listProjects = [];
+    let listProjects = [];
     let whoIsClicked;
+
+    if(localStorage.getItem("nameS")){
+        retrieveStorage(listProjects);
+    }
 
     const inputSelector = document.querySelector('.dashboard input');
     const newProject = document.querySelector('.dashboard button:first-of-type');
@@ -41,7 +45,9 @@ import {parse as dateFns,format} from 'date-fns'
             deleteElementsDom();
             printTodoElements(whoIsClicked,listProjects);
         });
-        
+
+        setItem();
+         
     });
 
     
@@ -310,4 +316,40 @@ function editBttn(varTodo,j){
         }
 
     });
+}
+
+function retrieveStorage(listProjects){
+    let numberOfProjects = JSON.parse(localStorage.getItem("nameS"));
+    let numberOfTodoS = JSON.parse(localStorage.getItem("todoS"));
+
+    for(let i = 0; i < numberOfProjects.length; i++){
+        listProjects[i] = Project(numberOfProjects[i]);
+        let varTodo = listProjects[i].getTodo();
+        for(let j = 0; j < numberOfTodoS.length; j++){
+            varTodo[j] = Todo(numberOfTodoS.nameT,numberOfTodoS.descrT,numberOfTodoS.prioT,dueDaT);
+        }
+    }
+
+
+}
+
+function setItem(listProjects){
+    let nameS = [];
+    let todoS = [];
+    let nameT,descrT,prioT,dueDaT;
+
+
+    for(let i = 0; i < listProjects.length; i++){
+        nameS[i] = listProjects[i].getName();
+        localStorage.setItem("nameS",JSON.stringify(nameS));
+        varTodo = listProjects[i].getTodo();
+        nameT = varTodo.getNameOfTodo();
+        descrT = varTodo.getDescr();
+        prioT = varTodo.getPriority();
+        dueDaT = varTodo.getDueDate();
+        todoS[i] = {nameT,descrT,prioT,dueDaT};
+
+
+    }
+    localStorage.setItem("todoS",JSON.stringify(todoS));
 }
