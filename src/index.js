@@ -331,6 +331,7 @@ function retrieveStorage(listProjects,whoIsClicked){
 
         populateWithProjectButton(numberOfProjects[i]);
 
+       
         let projectsButtons = document.querySelector('.projects button:last-of-type');
 
         
@@ -338,7 +339,7 @@ function retrieveStorage(listProjects,whoIsClicked){
             whoIsClicked = projectsButtons.textContent;
             deleteElementsDom();
             printTodoElements(whoIsClicked,listProjects);
-        });
+        }); 
     
 
         varTodo = listProjects[i].getTodo();
@@ -346,10 +347,12 @@ function retrieveStorage(listProjects,whoIsClicked){
         /* for(let j = 0; j < numberOfTodoS.length; j++){
             varTodo[j] = Todo(numberOfTodoS.nameT,numberOfTodoS.descrT,numberOfTodoS.prioT,dueDaT);
         } */
-        while(numberOfTodoS[counter] !== ' '){
+        while(numberOfTodoS[counter] !== ''){
             varTodo[counter] = Todo(numberOfTodoS[counter].nameT,numberOfTodoS[counter].descrT,numberOfTodoS[counter].prioT,numberOfTodoS[counter].dueDaT);
             counter++;
         }
+        counter++;
+
     }
 
 
@@ -360,14 +363,14 @@ function setItem(listProjects){
     let todoS = [];
     let nameT,descrT,prioT,dueDaT;
     let varTodo;
-    let h = 0;
+    let h = todoS.length;
 
 
     for(let i = 0; i < listProjects.length; i++){
         nameS[i] = listProjects[i].getName();
         varTodo = listProjects[i].getTodo();
 
-        if(varTodo[0]){
+        if(varTodo.length !== 0){
         for(let j = 0; j < varTodo.length; j++){
                 nameT = varTodo[j].getNameOfTodo();
                 descrT = varTodo[j].getDescr();
@@ -377,9 +380,11 @@ function setItem(listProjects){
                 h++;
             }
         }
-        todoS[h] = ' ';
+        todoS[h] = '';
         h++;
     }
+
+
     localStorage.setItem("nameS",JSON.stringify(nameS));
     localStorage.setItem("todoS",JSON.stringify(todoS));
     
