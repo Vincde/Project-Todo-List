@@ -59,6 +59,7 @@ import {parse as dateFns,format} from 'date-fns'
             }
         }
         projectDomDelete(whoIsClicked);
+        setItem(listProjects);
     });
 
     newTodoDivDomCreation();
@@ -187,7 +188,7 @@ function printTodoElements(whoIsClicked,listProjects){
                 newDivFather.appendChild(editButton);
 
                 makeDivExpand(varTodo[j]);
-                deleteTodoButtonLogic(varTodo,j);
+                deleteTodoButtonLogic(varTodo,j,listProjects);
                 editBttn(varTodo,j);
             }
         }
@@ -284,13 +285,14 @@ function makeDivExpand(todoElement){
     
 }
 
-function deleteTodoButtonLogic(varTodo,j){
+function deleteTodoButtonLogic(varTodo,j,listProjects){
     const selectButton = document.querySelector('.todo-board > div:last-of-type > button');
 
 
     selectButton.addEventListener('click', (event) =>{
         varTodo.splice(j,1);
         deleteElementsDom();
+        setItem(listProjects);
         event.stopPropagation();  //event NEEDS to be at the end or just deactivates all
     });
 }
