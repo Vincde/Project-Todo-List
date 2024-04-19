@@ -347,12 +347,13 @@ function retrieveStorage(listProjects,whoIsClicked){
         /* for(let j = 0; j < numberOfTodoS.length; j++){
             varTodo[j] = Todo(numberOfTodoS.nameT,numberOfTodoS.descrT,numberOfTodoS.prioT,dueDaT);
         } */
-        while(numberOfTodoS[counter] !== ''){
-            varTodo[counter] = Todo(numberOfTodoS[counter].nameT,numberOfTodoS[counter].descrT,numberOfTodoS[counter].prioT,numberOfTodoS[counter].dueDaT);
-            counter++;
+        if(numberOfTodoS[i][counter] !== ''){
+            while(counter < numberOfTodoS[i].length){
+                varTodo[counter] = Todo(numberOfTodoS[i][counter].nameT,numberOfTodoS[i][counter].descrT,numberOfTodoS[i][counter].prioT,numberOfTodoS[i][counter].dueDaT);
+                counter++;
+            }
+        counter = 0;
         }
-        counter++;
-
     }
 
 
@@ -363,25 +364,23 @@ function setItem(listProjects){
     let todoS = [];
     let nameT,descrT,prioT,dueDaT;
     let varTodo;
-    let h = todoS.length;
 
 
     for(let i = 0; i < listProjects.length; i++){
         nameS[i] = listProjects[i].getName();
         varTodo = listProjects[i].getTodo();
-
-        if(varTodo.length !== 0){
+        
+        todoS[i] = [''];
+        if(varTodo){
         for(let j = 0; j < varTodo.length; j++){
-                nameT = varTodo[j].getNameOfTodo();
-                descrT = varTodo[j].getDescr();
-                prioT = varTodo[j].getPriority();
-                dueDaT = varTodo[j].getDueDate();
-                todoS[h] = {nameT,descrT,prioT,dueDaT};
-                h++;
+            nameT = varTodo[j].getNameOfTodo();
+            descrT = varTodo[j].getDescr();
+            prioT = varTodo[j].getPriority();
+            dueDaT = varTodo[j].getDueDate();
+            
+            todoS[i][j] = {nameT,descrT,prioT,dueDaT};
             }
         }
-        todoS[h] = '';
-        h++;
     }
 
 
