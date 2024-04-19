@@ -79,6 +79,8 @@ import {parse as dateFns,format} from 'date-fns'
                 listProjects[j].pushObj(newTodo);
             }
         }
+
+        setItem(listProjects);
     });
 
 
@@ -322,6 +324,7 @@ function retrieveStorage(listProjects,whoIsClicked){
     let numberOfProjects = JSON.parse(localStorage.getItem("nameS"));
     let numberOfTodoS = JSON.parse(localStorage.getItem("todoS"));
     let counter = 0;
+    let varTodo; 
 
     for(let i = 0; i < numberOfProjects.length; i++){
         listProjects[i] = Project(numberOfProjects[i]);
@@ -338,7 +341,7 @@ function retrieveStorage(listProjects,whoIsClicked){
         });
     
 
-        let varTodo = listProjects[i].getTodo();
+        varTodo = listProjects[i].getTodo();
 
         /* for(let j = 0; j < numberOfTodoS.length; j++){
             varTodo[j] = Todo(numberOfTodoS.nameT,numberOfTodoS.descrT,numberOfTodoS.prioT,dueDaT);
