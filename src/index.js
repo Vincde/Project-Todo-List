@@ -55,7 +55,7 @@ import {parse as dateFns,format} from 'date-fns'
         deleteElementsDom();
         for(let i = 0; i < listProjects.length; i++){
             if(listProjects[i].getName() === whoIsClicked){
-                listProjects.slice(i,1);
+                listProjects.splice(i,1);
             }
         }
         projectDomDelete(whoIsClicked);
@@ -362,6 +362,7 @@ function retrieveStorage(listProjects,whoIsClicked){
 }
 
 function setItem(listProjects){
+    
     let nameS = [];
     let todoS = [];
     let nameT,descrT,prioT,dueDaT;
@@ -385,6 +386,7 @@ function setItem(listProjects){
         }
     }
 
+    localStorage.clear();
 
     localStorage.setItem("nameS",JSON.stringify(nameS));
     localStorage.setItem("todoS",JSON.stringify(todoS));
