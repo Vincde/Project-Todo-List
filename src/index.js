@@ -189,7 +189,7 @@ function printTodoElements(whoIsClicked,listProjects){
 
                 makeDivExpand(varTodo[j]);
                 deleteTodoButtonLogic(varTodo,j,listProjects);
-                editBttn(varTodo,j);
+                editBttn(varTodo,j,listProjects);
             }
         }
     }
@@ -298,7 +298,7 @@ function deleteTodoButtonLogic(varTodo,j,listProjects){
 }
 
 
-function editBttn(varTodo,j){
+function editBttn(varTodo,j,listProjects){
     const editButton = document.querySelector('.todo-board > div:last-of-type > button:last-of-type');
     const inputs = document.querySelectorAll('.div-new-inputs input');
 
@@ -318,7 +318,7 @@ function editBttn(varTodo,j){
             deleteElementsDom();
             editButton.textContent = 'Edit this Todo';
         }
-
+        setItem(listProjects);
     });
 }
 
