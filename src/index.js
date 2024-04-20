@@ -116,11 +116,11 @@ function Todo(todoName,description,dueDate,priority){
     priority = priority;
 
     const printIt = () =>{  //had to change name of todo
-        return `name:  ${todoName} priority: ${priority}`;
+        return `name:  ${todoName}\npriority: ${priority}`;
     }
 
     const printItExpanded = () =>{
-        return `name: ${todoName} description: ${description} duedate: ${dueDate}priority: ${priority}`;
+        return `name: ${todoName}\ndescription: ${description}\nduedate: ${dueDate}\npriority: ${priority}\n`;
     }
 
     const getNameOfTodo = () =>{
@@ -234,12 +234,11 @@ function newTodoDivDomCreation(){
         newLabel.textContent = inputNames[i];
         newDiv.appendChild(newLabel);
         newDiv.appendChild(newInput);
-
         
         let attributeValue = newInput.getAttribute('id');
         if(attributeValue === inputNames[1]){
-            newInput.style.width = '150px';
-            newInput.style.height = '150px';
+            newInput.style.width = '250px';
+            newInput.style.height = '50px';
         }
     }
 
@@ -352,7 +351,7 @@ function retrieveStorage(listProjects,whoIsClicked){
         } */
         if(numberOfTodoS[i][counter] !== ''){
             while(counter < numberOfTodoS[i].length){
-                varTodo[counter] = Todo(numberOfTodoS[i][counter].nameT,numberOfTodoS[i][counter].descrT,numberOfTodoS[i][counter].prioT,numberOfTodoS[i][counter].dueDaT);
+                varTodo[counter] = Todo(numberOfTodoS[i][counter].nameT,numberOfTodoS[i][counter].descrT,numberOfTodoS[i][counter].dueDaT,numberOfTodoS[i][counter].prioT);
                 counter++;
             }
         counter = 0;
