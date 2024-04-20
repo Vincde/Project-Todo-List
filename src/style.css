@@ -1,8 +1,8 @@
-*{
+/* *{
     font-size: 20px;
     border: 2px solid red;
     margin:5px;  
-}
+} */
 
 body{
     background-color: grey;
@@ -23,9 +23,34 @@ label{
 .projects{
     margin-top: 50px;
     margin-bottom: 50px;
+    border: 2px solid blue;
+    border-width: 5px;
+    border-radius: 10%;
 }
 
 .todo-board > div > div{
     width: 500px;
     white-space: pre-line;
+}
+
+button{
+    border-style: none;
+    color: black;
+    background-color: #9198e5;
+    border-radius: 10%;
+}
+
+
+.todo-board{
+    margin-top: 50px;
+    border: 2px solid green;
+}
+
+.dashboard div:last-of-type{
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard div:last-of-type label{
+    width: 100px;
 }
