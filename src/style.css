@@ -25,6 +25,7 @@ label{
     margin-bottom: 50px;
 }
 
-.todo-board div > div{
+.todo-board > div > div{
     width: 500px;
+    white-space: pre-line;
 }
