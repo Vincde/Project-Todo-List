@@ -1,4 +1,5 @@
-import {parse as dateFns,format} from 'date-fns'
+import {parse as dateFns,format} from 'date-fns';
+import './style.css';
 /* function logic() {
     this will be the explanation of this webpage
     
