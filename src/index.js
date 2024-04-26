@@ -1,30 +1,24 @@
-function newProject(name){
-    this.name = name;
-    this.todo = [];
+class Project{
+    todo = [];
 
-    const getName = () => {
-        return this.name;
+    constructor(name){
+        this.name = name;
     }
 
-    const addTodo = (newElement) => {
-        this.todo.push(newElement);
+    addElementToArray(element){
+        this.todo.push(element);
     }
 
-    return {getName,addTodo};
+    changeName(newName){
+        this.name = newName;
+    }
 }
 
+function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority){
+    let title = newTitle;
+    let description = newDescription;
+    let dueDate = newDueDate;
+    let priority = newPriority;
 
-function start(){
-    let listOfProjects = [];
-    
-    //button pressed
-    let name = prompt('name:');
-
-    let newProject = newProject(name);
-    listOfProjects.push(newProject);
-
-
-    
-
-
+    return {title,description,dueDate,priority};
 }

@@ -1,1 +1,1 @@
-console.log("hheehellooo");
+(()=>{let e=new class{todo=[];constructor(e){this.name=e}addElementToArray(e){this.todo.push(e)}changeName(e){this.name=e}}("hello");e.addElementToArray({title:"ciao",description:"ddff",dueDate:"ddd",priority:"halo"}),e.changeName("silver"),console.log(e)})();
