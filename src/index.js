@@ -1,12 +1,7 @@
 class Project{
-    todo = [];
 
     constructor(name){
         this.name = name;
-    }
-
-    addElementToArray(element){
-        this.todo.push(element);
     }
 
     changeName(newName){
@@ -21,4 +16,9 @@ function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority){
     let priority = newPriority;
 
     return {title,description,dueDate,priority};
+}
+
+function createNewProject(name){
+    const newProject = new Project(name);
+    return newProject;
 }
