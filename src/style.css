@@ -1,0 +1,37 @@
+*{
+    border:2px solid red;
+}
+
+body,html{
+    height: 100%;
+}
+
+.dashboard{
+    width: 35%;
+}
+.todo-board{
+    width: 65%;
+    /* should this be a grid system? */
+}
+
+body{
+    display: flex;
+}
+
+.profile{
+    display: flex;
+    margin-bottom: 50px;  /* distance between first div and 2nd */
+}
+
+h1{  /* this h1 is equal to .dashboard > div:first-of-type h1... */
+    width: 80%;
+}
+
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;  /* distance between second and third */
+}
+
+
