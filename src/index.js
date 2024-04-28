@@ -36,7 +36,7 @@ function execDOM(){
     const newProject = document.querySelector('.buttons button:first-of-type');
 
     newProject.addEventListener('click', ()=>{
-        drawForm();
+        middleDraw();
         //1)function that asks name
         //2)create the new project
         //3)put project into array of projects
@@ -46,14 +46,46 @@ function execDOM(){
 }
 
 
+function middleDraw(){
+    drawForm();
+    drawFormDom();
+}
+
+
 function drawForm(){
     const newContainer = document.createElement('div');
     const newLabel = document.createElement('label');
     const newInput = document.createElement('input');
+    const okButton = document.createElement('button');
+    
+    newContainer.setAttribute('class','projectForm');
+
+    okButton.setAttribute('type','button');
+    okButton.textContent = 'Ok';
 
     newInput.setAttribute('id','NewProjectName');
     newLabel.setAttribute('for','NewProjectName');
 
-    
+    newContainer.appendChild(newLabel);
+    newContainer.appendChild(newInput);
+    newContainer.appendChild(okButton);
 
+    const bodySelector = document.querySelector('body');
+    bodySelector.appendChild(newContainer);
+
+
+}
+
+function drawFormDom(){
+    const projectForm = document.querySelector('.projectForm button');
+    const inputForm = document.querySelector('.projectForm input');
+
+    projectForm.addEventListener('click', ()=>{
+        if(inputForm.value){
+            
+            projectForm.parentElement.remove();
+        }
+        
+        
+    });
 }

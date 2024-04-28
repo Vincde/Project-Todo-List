@@ -1,0 +1,1 @@
+!function(){const e=document.createElement("div"),t=document.createElement("label"),n=document.createElement("input"),d=document.createElement("button");d.setAttribute("type","button"),d.textContent="Ok",n.setAttribute("id","NewProjectName"),t.setAttribute("for","NewProjectName"),e.appendChild(t),e.appendChild(n),e.appendChild(d),document.querySelector("body").appendChild(e)}();
