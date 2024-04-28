@@ -7,6 +7,10 @@ class Project{
     changeName(newName){
         this.name = newName;
     }
+
+    getName(){
+        return this.name;
+    }
 }
 
 function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority){
@@ -34,22 +38,14 @@ function createNewProject(name){
 
 function execDOM(){
     const newProject = document.querySelector('.buttons button:first-of-type');
+    const projectArray = [];
 
     newProject.addEventListener('click', ()=>{
-        middleDraw();
-        //1)function that asks name
-        //2)create the new project
-        //3)put project into array of projects
-        //4)create button with the name of the new project
-        //5)Put new button into webpage
+        drawForm();
+        drawFormLogic(projectArray);
     });
 }
 
-
-function middleDraw(){
-    drawForm();
-    drawFormDom();
-}
 
 
 function drawForm(){
@@ -76,16 +72,34 @@ function drawForm(){
 
 }
 
-function drawFormDom(){
-    const projectForm = document.querySelector('.projectForm button');
+function drawFormLogic(projectArray){
+    const projectFormButton = document.querySelector('.projectForm button');
+    const projectForm = document.querySelector('.projectForm');
     const inputForm = document.querySelector('.projectForm input');
 
-    projectForm.addEventListener('click', ()=>{
-        if(inputForm.value){
-            
-            projectForm.parentElement.remove();
+    projectFormButton.addEventListener('click', ()=>{
+        if(inputForm.value != '' || inputForm.value != undefined || inputForm.value != null){
+            let newProject = new Project(inputForm.value);
+            projectArray.push(newProject);
+            projectFormButton.parentElement.parentElement.removeChild(projectForm);
+            createButtonForNewProject(projectArray[projectArray.length-1].getName());
+            //maybe this doesn't need refreshing of page
         }
         
         
     });
 }
+
+
+function createButtonForNewProject(nameOfNewButton){
+    const projectsContainer = document.querySelector('.my-projects');
+    const newButton = document.createElement('button');
+
+    newButton.setAttribute('type','button');
+
+    newButton.textContent = nameOfNewButton;
+
+    projectsContainer.appendChild(newButton);
+}
+
+execDOM();
