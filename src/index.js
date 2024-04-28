@@ -75,7 +75,7 @@ function drawForm(){
     for(all of allExceptOurFormSelector){
     all.style.filter = 'blur(1px)';
     }
-    
+
 }
 
 function drawFormLogic(projectArray){
@@ -89,6 +89,10 @@ function drawFormLogic(projectArray){
             projectArray.push(newProject);
             projectFormButton.parentElement.parentElement.removeChild(projectForm);
             createButtonForNewProject(projectArray[projectArray.length-1].getName());
+            const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm)');
+            for(all of allExceptOurFormSelector){
+                all.style.filter = 'blur(0)';
+                }
         }
         
         
