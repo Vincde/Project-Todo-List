@@ -8,7 +8,7 @@ body,html{
 }
 
 .dashboard{
-    width: 35%;
+    width: 30%;
 }
 .todo-board{
     width: 65%;
@@ -22,6 +22,11 @@ body{
 .profile{
     display: flex;
     margin-bottom: 50px;  /* distance between first div and 2nd */
+    align-items: center;
+}
+
+.profile > div{
+    text-align: center;
 }
 
 h1{  /* this h1 is equal to .dashboard > div:first-of-type h1... */
@@ -33,6 +38,15 @@ h1{  /* this h1 is equal to .dashboard > div:first-of-type h1... */
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;  /* distance between second and third */
+}
+
+.buttons button{
+    width: 10em;
+    list-style: none;
+    border-style: none;
+    background-color: #3c5b6f;
+    margin-bottom: 10px;
+    border-radius: 7%;
 }
 
 
