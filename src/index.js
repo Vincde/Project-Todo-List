@@ -42,6 +42,7 @@ function execDOM(){
 
     newProject.addEventListener('click', ()=>{
         drawForm();
+        blurTheForm();
         drawFormLogic(projectArray);
     });
 }
@@ -70,12 +71,6 @@ function drawForm(){
     const bodySelector = document.querySelector('body');
     bodySelector.appendChild(newContainer);
 
-    const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm)');
-    
-    for(all of allExceptOurFormSelector){
-    all.style.filter = 'blur(1px)';
-    }
-
 }
 
 function drawFormLogic(projectArray){
@@ -85,14 +80,13 @@ function drawFormLogic(projectArray){
 
     projectFormButton.addEventListener('click', () => {
         if(inputForm.value != '' || inputForm.value != undefined || inputForm.value != null){
+
             let newProject = new Project(inputForm.value);
             projectArray.push(newProject);
+
             projectFormButton.parentElement.parentElement.removeChild(projectForm);
-            createButtonForNewProject(projectArray[projectArray.length-1].getName());
-            const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm)');
-            for(all of allExceptOurFormSelector){
-                all.style.filter = 'blur(0)';
-                }
+            createButtonForNewProject(newProject.getName());
+            unblurTheForm();
         }
         
         
@@ -110,5 +104,30 @@ function createButtonForNewProject(nameOfNewButton){
 
     projectsContainer.appendChild(newButton);
 }
+
+
+function blurTheForm(){
+    const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm)');
+    
+    for(all of allExceptOurFormSelector){
+    all.style.filter = 'blur(1px)';
+    }
+}
+function unblurTheForm(){
+const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm)');
+
+    for(all of allExceptOurFormSelector){
+        all.style.filter = 'blur(0)';
+        }
+}
+
+/* ------------------------------------------------------------------------------
+                PROJECT MANAGEMENT
+                
+---------------------------------------------------------------------------------*/
+
+
+
+
 
 execDOM();

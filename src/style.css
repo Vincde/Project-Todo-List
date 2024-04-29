@@ -52,8 +52,9 @@ h1{  /* this h1 is equal to .dashboard > div:first-of-type h1... */
 
 .projectForm{
     position: absolute;
-    left: 50%;
-    top: 50%;
-    background-color: green; /* hypothetical */
-    
+    left: 35%;
+    top: 20%;
+    background-color: #e2dfd0; /* hypothetical */
+    width: 400px;
+    height: 100px;
 }
