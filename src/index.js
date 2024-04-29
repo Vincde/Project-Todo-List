@@ -44,6 +44,7 @@ function execDOM(){
         drawForm();
         blurTheForm();
         drawFormLogic(projectArray);
+        /* addLogicToProjectsDiv(projectArray); */
     });
 }
 
@@ -120,6 +121,14 @@ const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm
         all.style.filter = 'blur(0)';
         }
 }
+
+function addLogicToProjectsDiv(...projectArray){
+    const lastButton = document.querySelector('.my-projects button:last-of-type');
+    lastButton.addEventListener('click', ()=> {
+        //i don't know what to put in
+    });
+}
+
 
 /* ------------------------------------------------------------------------------
                 PROJECT MANAGEMENT
