@@ -44,7 +44,7 @@ function execDOM(){
         drawForm();
         blurTheForm();
         drawFormLogic(projectArray);
-        /* addLogicToProjectsDiv(projectArray); */
+        addLogicToProjectsDiv(projectArray[projectArray.length-1].getName());
     });
 }
 
@@ -122,10 +122,10 @@ const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm
         }
 }
 
-function addLogicToProjectsDiv(...projectArray){
+function addLogicToProjectsDiv(nameOfButtonToChange){
     const lastButton = document.querySelector('.my-projects button:last-of-type');
     lastButton.addEventListener('click', ()=> {
-        //i don't know what to put in
+        
     });
 }
 
