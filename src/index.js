@@ -38,13 +38,14 @@ function createNewProject(name){
 
 function execDOM(){
     const newProject = document.querySelector('.buttons button:first-of-type');
+    const taskArray = [];
     const projectArray = [];
 
     newProject.addEventListener('click', ()=>{
         drawForm();
         blurTheForm();
         drawFormLogic(projectArray);
-        addLogicToProjectsDiv(projectArray[projectArray.length-1].getName());
+        addLogicToBttn(...taskArray);
     });
 }
 
@@ -82,7 +83,7 @@ function drawFormLogic(projectArray){
     projectFormButton.addEventListener('click', () => {
         if(inputForm.value != '' || inputForm.value != undefined || inputForm.value != null){
 
-            let newProject = new Project(inputForm.value);
+            let newProject = createNewProject(inputForm.value);
             projectArray.push(newProject);
 
             projectFormButton.parentElement.parentElement.removeChild(projectForm);
@@ -122,12 +123,20 @@ const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm
         }
 }
 
-function addLogicToProjectsDiv(nameOfButtonToChange){
-    const lastButton = document.querySelector('.my-projects button:last-of-type');
-    lastButton.addEventListener('click', ()=> {
-        
-    });
+
+function addLogicToBttn(taskArray){
+    const selectBttn = document.querySelector('my-projects button:last-of-type');
+
+    let nameOfProject = selectBttn.textContent;
+
+    for(elem of taskArray){
+        if(elem.getStatus === nameOfProject){
+            printAtScreen();   //a theorical task that gets created dinamically in another function
+        }
+    }
 }
+
+
 
 
 /* ------------------------------------------------------------------------------
