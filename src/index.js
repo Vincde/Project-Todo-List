@@ -45,7 +45,7 @@ function execDOM(){
         drawForm();
         blurTheForm();
         drawFormLogic(projectArray);
-        addLogicToBttn(...taskArray);
+        addLogicToBttn(taskArray);
     });
 }
 
@@ -81,13 +81,13 @@ function drawFormLogic(projectArray){
     const inputForm = document.querySelector('.projectForm input');
 
     projectFormButton.addEventListener('click', () => {
-        if(inputForm.value != '' || inputForm.value != undefined || inputForm.value != null){
+        if(inputForm.value != '' ||
+           inputForm.value != undefined ||
+           inputForm.value != null){
 
-            let newProject = createNewProject(inputForm.value);
-            projectArray.push(newProject);
-
-            projectFormButton.parentElement.parentElement.removeChild(projectForm);
-            createButtonForNewProject(newProject.getName());
+            createTheProjectAndAddItToTheArray(inputForm.value,projectArray);
+            createButtonForNewProject(inputForm.value);
+            removeTheForm();
             unblurTheForm();
         }
         
@@ -124,18 +124,32 @@ const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm
 }
 
 
-function addLogicToBttn(...taskArray){
+function addLogicToBttn(taskArray){
     const selectBttn = document.querySelector('.my-projects button:last-of-type');
 
-    let nameOfProject = selectBttn.textContent;
+    selectBttn.addEventListener('click', () => {
+        let nameOfProject = selectBttn.textContent;
 
-    for(elem of taskArray){
-        if(elem.getProject === nameOfProject){
-            printAtScreen(elem);   //a theorical task that gets created dinamically in another function
+        for(elem of taskArray){
+            if(elem.getProject === nameOfProject){
+                /* createTasksOnWebPage(elem); */   //a theorical task that gets created dinamically in another function
+                //This needs an element of link inside every task
+            }
         }
-    }
+    });
 }
 
+
+function removeTheForm(){
+    const projectFormButton = document.querySelector('.projectForm button');
+    const projectForm = document.querySelector('.projectForm');
+    projectFormButton.parentElement.parentElement.removeChild(projectForm);
+}
+
+function createTheProjectAndAddItToTheArray(name,projectArray){
+    let newProject = createNewProject(name);
+    projectArray.push(newProject);
+}
 
 
 
