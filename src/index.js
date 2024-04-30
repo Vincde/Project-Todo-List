@@ -38,7 +38,7 @@ function createNewProject(name){
 
 function execDOM(){
     const newProject = document.querySelector('.buttons button:first-of-type');
-    const taskArray = [];
+    const taskArray = [1,2,3,4,5];  //this array contains all tasks
     const projectArray = [];
 
     newProject.addEventListener('click', ()=>{
@@ -124,14 +124,14 @@ const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm
 }
 
 
-function addLogicToBttn(taskArray){
-    const selectBttn = document.querySelector('my-projects button:last-of-type');
+function addLogicToBttn(...taskArray){
+    const selectBttn = document.querySelector('.my-projects button:last-of-type');
 
     let nameOfProject = selectBttn.textContent;
 
     for(elem of taskArray){
-        if(elem.getStatus === nameOfProject){
-            printAtScreen();   //a theorical task that gets created dinamically in another function
+        if(elem.getProject === nameOfProject){
+            printAtScreen(elem);   //a theorical task that gets created dinamically in another function
         }
     }
 }
