@@ -38,7 +38,7 @@ function createNewProject(name){
 
 function execDOM(){
     const newProject = document.querySelector('.buttons button:first-of-type');
-    const taskArray = [1,2,3,4,5];  //this array contains all tasks
+    const taskArray = [];  //this array contains all tasks
     const projectArray = [];
 
     newProject.addEventListener('click', ()=>{
