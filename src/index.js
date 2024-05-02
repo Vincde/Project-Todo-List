@@ -1,40 +1,6 @@
-class Project{
+import Project, {createNewProject} from './templateFiles/project.js';
+import createTaskForTodo from './templateFiles/task.js';
 
-    constructor(name){
-        this.name = name;
-    }
-
-    changeName(newName){
-        this.name = newName;
-    }
-
-    getName(){
-        return this.name;
-    }
-}
-
-function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority){
-    let title = newTitle;
-    let description = newDescription;
-    let dueDate = newDueDate;
-    let priority = newPriority;
-
-    return {title,description,dueDate,priority};
-}
-
-function createNewProject(name){
-    const newProject = new Project(name);
-    return newProject;
-}
-
-
-
-
-
-/* ------------------------------------------------------------------------------
-                DOM EXECUTION
-                
----------------------------------------------------------------------------------*/
 
 function execDOM(){
     const newProject = document.querySelector('.buttons button:first-of-type');
@@ -111,14 +77,14 @@ function createButtonForNewProject(nameOfNewButton){
 function blurTheForm(){
     const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm)');
     
-    for(all of allExceptOurFormSelector){
+    for(let all of allExceptOurFormSelector){
     all.style.filter = 'blur(1px)';
     }
 }
 function unblurTheForm(){
 const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm)');
 
-    for(all of allExceptOurFormSelector){
+    for(let all of allExceptOurFormSelector){
         all.style.filter = 'blur(0)';
         }
 }
@@ -153,10 +119,6 @@ function createTheProjectAndAddItToTheArray(name,projectArray){
 
 
 
-/* ------------------------------------------------------------------------------
-                PROJECT MANAGEMENT
-                
----------------------------------------------------------------------------------*/
 
 
 
