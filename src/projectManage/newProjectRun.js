@@ -75,21 +75,6 @@ const allExceptOurFormSelector = document.querySelectorAll('div:not(.projectForm
 }
 
 
-function addLogicToBttn(taskArray){
-    const selectBttn = document.querySelector('.my-projects button:last-of-type');
-
-    selectBttn.addEventListener('click', () => {
-        let nameOfProject = selectBttn.textContent;
-
-        for(elem of taskArray){
-            if(elem.getProject === nameOfProject){
-                /* createTasksOnWebPage(elem); */   //a theorical task that gets created dinamically in another function
-                //This needs an element of link inside every task
-            }
-        }
-    });
-}
-
 
 function removeTheForm(){
     const projectFormButton = document.querySelector('.projectForm button');
@@ -101,6 +86,24 @@ function createTheProjectAndAddItToTheArray(name,projectArray){
     let newProject = createNewProject(name);
     projectArray.push(newProject);
 }
+
+
+
+function addLogicToBttn(taskArray){
+    const selectBttn = document.querySelector('.my-projects button:last-of-type');
+
+    selectBttn.addEventListener('click', () => {
+        let nameOfProject = selectBttn.textContent;
+
+        for(elem of taskArray){
+            if(elem.getProject === nameOfProject){
+                /* createTasksOnWebPage(elem); */   //a theorical task that gets created dinamically in another function
+                
+            }
+        }
+    });
+}
+
 
 
 export {drawForm,blurTheForm,drawFormLogic,addLogicToBttn};
