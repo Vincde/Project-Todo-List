@@ -20,5 +20,4 @@ function createNewProject(name){
 
 //Add this functionality here to not have another file to manage
 
-export default Project;
-export {createNewProject};
+export default createNewProject;
