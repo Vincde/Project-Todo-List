@@ -93,17 +93,63 @@ function addLogicToBttn(taskArray){
     const selectBttn = document.querySelector('.my-projects button:last-of-type');
 
     selectBttn.addEventListener('click', () => {
+
+        clearAll();
+
         let nameOfProject = selectBttn.textContent;
+        addDeleteButtonToWebpage();
+        //the logic for deleting the button is not present yet
 
         for(elem of taskArray){
-            if(elem.getProject === nameOfProject){
-                /* createTasksOnWebPage(elem); */   //a theorical task that gets created dinamically in another function
-                
+            if(elem.getProjectName() === nameOfProject){
+                createTasksOnWebPage(elem);   //a theorical task that gets created dinamically in another function
+                deleteTaskButton(elem);
             }
         }
     });
 }
 
 
+function createTasksOnWebPage(task){
+    const todoContainer = document.querySelector('.todo-board div:last-of-type');
+    const todo = document.createElement('div');
+
+    todo.textContent = 'aaaa';//here goes description,date,name,etc
+
+    todoContainer.appendChild(todo);
+}
+
+function addDeleteButtonToWebpage(){
+    const selectBoard = document.querySelector('.todo-board');
+    const anotherDiv = document.createElement('div');
+    const newDiv = document.createElement('div');
+    const deleteButton = document.createElement('button');
+    
+    deleteButton.setAttribute('type','button');
+    deleteButton.textContent = 'Delete this Project';
+
+    selectBoard.appendChild(newDiv);
+    selectBoard.appendChild(anotherDiv);
+    newDiv.appendChild(deleteButton);
+}
+
+function clearAll(){
+    const board = document.querySelectorAll('.todo-board *');
+
+    for(let elem of board){
+        elem.remove();
+    }
+}
+
+function deleteTaskButton(task){
+
+    const selectDiv = document.querySelector('.todo-board > div:last-of-type > div:last-of-type');
+    const deleteTaskButton = document.createElement('button');
+    deleteTaskButton.setAttribute('type','button');
+    deleteTaskButton.textContent = 'Delete task!';
+
+    selectDiv.appendChild(deleteTaskButton);
+
+}
 
 export {drawForm,blurTheForm,drawFormLogic,addLogicToBttn};

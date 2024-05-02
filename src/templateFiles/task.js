@@ -1,10 +1,27 @@
-function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority){
+function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority,newProjectLink){
     let title = newTitle;
     let description = newDescription;
     let dueDate = newDueDate;
     let priority = newPriority;
+    let projectLink = newProjectLink;
 
-    return {title,description,dueDate,priority};
+    function getTitle(){
+        return title;
+    }
+    function getDescription(){
+        return description;
+    }
+    function getDate(){
+        return dueDate;
+    }
+    function getPriority(){
+        return priority;
+    }
+    function getProjectName(){
+        return projectLink;
+    }
+
+    return {getTitle,getDescription,getDate,getPriority,getProjectName};
 }
 
 
