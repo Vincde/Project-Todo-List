@@ -234,14 +234,29 @@ function drawFormTask(){
     newLabelPriority.textContent = 'Priority => ';
     newLabelPriority.setAttribute('for','NewTaskPrio');
 
+   
+
+
     newContainer.appendChild(newLabelName);
     newContainer.appendChild(newInputName);
+
+    newInputName.insertAdjacentHTML('afterend',"<br>");
+
     newContainer.appendChild(newLabelDescription);
     newContainer.appendChild(newInputDescription);
+
+    newInputDescription.insertAdjacentHTML('afterend',"<br>");
+
     newContainer.appendChild(newLabelDate);
     newContainer.appendChild(newInputDate);
+
+    newInputDate.insertAdjacentHTML('afterend',"<br>");
+
     newContainer.appendChild(newLabelPriority);
     newContainer.appendChild(newInputPriority);
+
+    newInputPriority.insertAdjacentHTML('afterend',"<br>");
+
     newContainer.appendChild(form);
     newContainer.appendChild(select);
 
