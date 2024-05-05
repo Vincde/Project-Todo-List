@@ -1,9 +1,9 @@
-import { addLogicToNewProjectButton,clearAll } from "./dom/dom.js";
+import { startNewProjectButton,clearAll } from "./dom/dom.js";
 
 
 const init = function(){
 
-    addLogicToNewProjectButton();
+    startNewProjectButton();
 
 }
 

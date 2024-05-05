@@ -1,7 +1,7 @@
 import createTheProjectAndAddItToTheArray from "../projectManage/newProjectCall.js";
 
 
-function addLogicToNewProjectButton(){
+function startNewProjectButton(){
     const newProject = document.querySelector('.buttons button:first-of-type');
 
     newProject.addEventListener('click', ()=>{
@@ -60,6 +60,7 @@ function drawFormLogic(){
             createButtonForNewProject(inputForm.value);
             removeTheForm();
             unblurTheForm();
+            displayLogicButton();
         }
         
         
@@ -95,9 +96,41 @@ function unblurTheForm(){
 }
 
 
+function displayLogicButton(){
+    const selectButton = document.querySelector('.my-projects button:last-of-type');
+    const selectDisplay = document.querySelector('.todo-board');
+    
+
+    selectButton.addEventListener('click',() => {
+        clearAll();
 
 
-//UNUSED FUNCTION THAT ARE NEEDED FOR FUTURE IMPLEMENTATION
+        const delProjectBttn = document.createElement('button');
+        delProjectBttn.setAttribute('type','button');
+        delProjectBttn.textContent = 'delete this project';
+
+        selectDisplay.appendChild(delProjectBttn);
+
+        createNewDivsWithDelButton();
+        /* populateContainer(); this function takes all tasks for project and prints them at screen*/  
+    });
+}
+
+
+function createNewDivsWithDelButton(){
+    const newContainer = document.createElement('div');
+    const delBttn = document.createElement('button');
+    const selectDisplay = document.querySelector('.todo-board');
+    
+    delBttn.setAttribute('type', 'button');
+    delBttn.textContent = 'delete this task';
+
+    newContainer.appendChild(delBttn);
+    selectDisplay.appendChild(newContainer);
+}
+
+
+
 
 function clearAll(){
     const board = document.querySelectorAll('.todo-board *');
@@ -115,5 +148,5 @@ function clearAll(){
 
 
 
-export {addLogicToNewProjectButton,
+export {startNewProjectButton,
         clearAll};
