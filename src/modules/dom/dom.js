@@ -1,4 +1,6 @@
 import createTheProjectAndAddItToTheArray from "../projectManage/newProjectCall.js";
+import projectTask from "../templateFiles/arrayOfTasks.js";
+import projectArray from "../templateFiles/arrayOfProjects.js";
 
 
 function startNewProjectButton(){
@@ -111,9 +113,22 @@ function displayLogicButton(){
 
         selectDisplay.appendChild(delProjectBttn);
 
-        createNewDivsWithDelButton();
-        /* populateContainer(); this function takes all tasks for project and prints them at screen*/  
+        displayAtScreen();
     });
+}
+
+function displayAtScreen(){
+
+    for(let i = 0; i < projectTask.getLength(); i++){
+        for(let j = 0; j < projectArray.getLength(); j++){
+            if(projectTask[i].getProjectName() === projectArray[j].getName()){
+                createNewDivsWithDelButton();
+                populateContainer(i);
+            }
+        }
+    }
+
+    
 }
 
 
@@ -129,7 +144,122 @@ function createNewDivsWithDelButton(){
     selectDisplay.appendChild(newContainer);
 }
 
+function populateContainer(i){
+    const selectContainer = document.querySelector('.todo-board div:last-of-type');
 
+    const newContainer = document.createElement('div');
+    const name = document.createElement('p');
+    const description = document.createElement('p');
+    const dueDate = document.createElement('p');
+    const priority = document.createElement('p');
+
+    name.textContent = projectTask.getName(i);
+    description.textContent = projectTask.getDescription(i);
+    dueDate.textContent = projectTask.getDueDate(i);
+    priority.textContent = projectTask.getPriority(i); 
+
+    newContainer.appendChild(name);
+    newContainer.appendChild(description);
+    newContainer.appendChild(dueDate);
+    newContainer.appendChild(priority);
+
+}
+
+// ADD NEW EVENT TASK
+
+function addNewEventButton(){
+    const newEvent = document.querySelector('.buttons button:nth-child(2)');
+    
+    newEvent.addEventListener('click', () => {
+        drawFormTask();
+        blurTheFormTask();
+        //drawFormLogic!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    });
+
+}
+
+function drawFormTask(){
+    const newContainer = document.createElement('div');
+
+    const newLabelName = document.createElement('label');
+    const newInputName = document.createElement('input');
+
+    const newLabelDescription = document.createElement('label');
+    const newInputDescription = document.createElement('input');
+
+    const newLabelDate = document.createElement('label');
+    const newInputDate = document.createElement('input');
+
+    const newLabelPriority = document.createElement('label');
+    const newInputPriority = document.createElement('input');
+
+    const form = document.createElement('label');
+    const select = document.createElement('select');
+    form.setAttribute('for','labelSelect');
+    form.textContent = 'which project';
+    select.setAttribute('id','labelSelect');
+    select.setAttribute('name','selectOption');
+
+    for(let i = 0; i < projectArray.getLength(); i++){
+        const option = document.createElement('option');
+        option.textContent = `${projectArray.getName(i)}`;
+        select.appendChild(option);
+    }
+
+
+    const okButton = document.createElement('button');
+
+
+    
+    newContainer.setAttribute('class','taskForm');
+
+    okButton.setAttribute('type','button');
+    okButton.textContent = 'Ok';
+
+
+
+    newInputName.setAttribute('id','NewTaskName');
+    newLabelName.textContent ='Name => ';
+    newLabelName.setAttribute('for','NewTaskName');
+
+    newInputDescription.setAttribute('id','NewTaskDescription');
+    newLabelDescription.textContent = 'Description => ';
+    newLabelDescription.setAttribute('for','NewTaskDescription');
+
+    newInputDate.setAttribute('id','NewTaskDate');
+    newLabelDate.textContent = 'DueDate => ';
+    newLabelDate.setAttribute('for','NewTaskDate');
+
+    newInputPriority.setAttribute('id','NewTaskPrio');
+    newLabelPriority.textContent = 'Priority => ';
+    newLabelPriority.setAttribute('for','NewTaskPrio');
+
+    newContainer.appendChild(newLabelName);
+    newContainer.appendChild(newInputName);
+    newContainer.appendChild(newLabelDescription);
+    newContainer.appendChild(newInputDescription);
+    newContainer.appendChild(newLabelDate);
+    newContainer.appendChild(newInputDate);
+    newContainer.appendChild(newLabelPriority);
+    newContainer.appendChild(newInputPriority);
+    newContainer.appendChild(form);
+    newContainer.appendChild(select);
+
+    
+    newContainer.appendChild(okButton);
+
+    const bodySelector = document.querySelector('body');
+    bodySelector.appendChild(newContainer);
+
+}
+
+function blurTheFormTask(){
+    const allExceptOurFormSelector = document.querySelectorAll('div:not(.taskForm)');
+    
+    for(let all of allExceptOurFormSelector){
+    all.style.filter = 'blur(1px)';
+    }
+}
 
 
 function clearAll(){
@@ -149,4 +279,5 @@ function clearAll(){
 
 
 export {startNewProjectButton,
-        clearAll};
+        clearAll,
+        addNewEventButton};

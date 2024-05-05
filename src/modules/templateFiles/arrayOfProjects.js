@@ -6,7 +6,15 @@ function arrayOfProjects(){
         arrayOfProjects.push(project);
     }
 
-    return {pushProjectIntoArray};
+    const getName = (count) => {
+        return arrayOfProjects[count].getName();
+    }
+
+    const getLength = () => {
+        return arrayOfProjects.length;
+    }
+
+    return {pushProjectIntoArray,getName,getLength};
 }
 
 const projectArray = arrayOfProjects();
