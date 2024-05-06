@@ -1,6 +1,7 @@
 import createTheProjectAndAddItToTheArray from "../projectManage/newProjectCall.js";
 import projectTask from "../templateFiles/arrayOfTasks.js";
 import projectArray from "../templateFiles/arrayOfProjects.js";
+import { autoCreateTask } from "../projectManage/newProjectCall.js";
 
 
 function startNewProjectButton(){
@@ -121,7 +122,7 @@ function displayAtScreen(){
 
     for(let i = 0; i < projectTask.getLength(); i++){
         for(let j = 0; j < projectArray.getLength(); j++){
-            if(projectTask[i].getProjectName() === projectArray[j].getName()){
+            if(projectTask.getLink(i) === projectArray.getName(j)){
                 createNewDivsWithDelButton();
                 populateContainer(i);
             }
@@ -163,6 +164,8 @@ function populateContainer(i){
     newContainer.appendChild(dueDate);
     newContainer.appendChild(priority);
 
+    selectContainer.appendChild(newContainer);
+
 }
 
 // ADD NEW EVENT TASK
@@ -173,7 +176,7 @@ function addNewEventButton(){
     newEvent.addEventListener('click', () => {
         drawFormTask();
         blurTheFormTask();
-        /* drawFormLogicTask(); */
+        drawFormLogicTask();
     });
 
 }
@@ -201,12 +204,14 @@ function drawFormTask(){
     select.setAttribute('name','selectOption');
 
     const defOption = document.createElement('option');
+    defOption.setAttribute('value','0');
     defOption.textContent = 'none';
     select.appendChild(defOption);
 
     for(let i = 0; i < projectArray.getLength(); i++){
         const option = document.createElement('option');
         option.textContent = `${projectArray.getName(i)}`;
+        option.setAttribute('value',`${projectArray.getName(i)}`);
         select.appendChild(option);
     }
 
@@ -278,17 +283,28 @@ function drawFormLogicTask(){
     const inputSelector = document.querySelectorAll('.taskForm input');
     const select = document.querySelector('.taskForm select');
 
-    okButtonTask.addEventListener('click', ()=> {
-        if(inputSelector[0].value &&
-           inputSelector[1].value &&
-           inputSelector[2].value &&
-           inputSelector[3].value){
+    
 
+    okButtonTask.addEventListener('click', ()=> {
+        let name = inputSelector[0].value;
+        let descr = inputSelector[1].value;
+        let date = inputSelector[2].value;
+        let priority = inputSelector[3].value;
+        let projectLink = select.value;
+
+        if(name  &&
+           descr &&
+           date  &&
+           priority){
+                autoCreateTask(name,descr,date,priority,projectLink);
+                removeTheFormTask();
+                unblurTheFormTask();
            }
 
 
     });
 }
+
 
 function blurTheFormTask(){
     const allExceptOurFormSelector = document.querySelectorAll('div:not(.taskForm)');
@@ -298,6 +314,19 @@ function blurTheFormTask(){
     }
 }
 
+function removeTheFormTask(){
+    const taskFormButton = document.querySelector('.taskForm button');
+    const taskForm = document.querySelector('.taskForm');
+    taskFormButton.parentElement.parentElement.removeChild(taskForm);
+}
+
+function unblurTheFormTask(){
+    const allExceptOurFormSelector = document.querySelectorAll('div:not(.taskForm)');
+    
+        for(let all of allExceptOurFormSelector){
+            all.style.filter = 'blur(0)';
+            }
+}
 
 function clearAll(){
     const board = document.querySelectorAll('.todo-board *');

@@ -1,12 +1,12 @@
 function arrayOfTasks(){
     const arrayOfTasks = [];
 
-    const addElement = (task) =>{
-        arrayOfTasks.push(task);
+    const getName = (count) => {
+        return arrayOfTasks[count].getTitle();
     }
 
-    const getName = (count) => {
-        return arrayOfTasks[count].getName();
+    const addElement = (task) =>{
+        arrayOfTasks.push(task);
     }
 
     const getDescription = (count) => {
@@ -22,16 +22,20 @@ function arrayOfTasks(){
     }
 
     const getProjectName = (count) => {
-        return arrayOfTasks[count].getProjectName();
+        return arrayOfTasks[count].getLink();
     }
 
     const getLength = () => {
         return arrayOfTasks.length;
     }
 
+    const getLink = (count) => {
+        return arrayOfTasks[count].getLink();
+    }
 
 
-    return {addElement,getName,getDescription,getDueDate,getPriority,getProjectName,getLength};
+
+    return {addElement,getDescription,getDueDate,getPriority,getProjectName,getLength,getLink,getName};
 }
 
 const projectTask = arrayOfTasks();

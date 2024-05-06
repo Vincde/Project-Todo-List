@@ -20,9 +20,12 @@ function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority,newPro
     function getProjectName(){
         return projectLink;
     }
+    function getLink(){
+        return projectLink;
+    }
 
-    return {getTitle,getDescription,getDate,getPriority,getProjectName};
+    return {getTitle,getDescription,getDate,getPriority,getProjectName,getLink};
 }
 
 
-//not exported yet
+export default createTaskForTodo;
