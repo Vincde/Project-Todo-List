@@ -146,7 +146,7 @@ function createNewDivsWithDelButton(){
 }
 
 function populateContainer(i){
-    const selectContainer = document.querySelector('.todo-board div:last-of-type');
+    const selectContainer = document.querySelector('.todo-board > div:last-of-type');
 
     const newContainer = document.createElement('div');
     const name = document.createElement('p');
