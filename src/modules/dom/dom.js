@@ -173,7 +173,7 @@ function addNewEventButton(){
     newEvent.addEventListener('click', () => {
         drawFormTask();
         blurTheFormTask();
-        //drawFormLogic!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /* drawFormLogicTask(); */
     });
 
 }
@@ -199,6 +199,10 @@ function drawFormTask(){
     form.textContent = 'which project';
     select.setAttribute('id','labelSelect');
     select.setAttribute('name','selectOption');
+
+    const defOption = document.createElement('option');
+    defOption.textContent = 'none';
+    select.appendChild(defOption);
 
     for(let i = 0; i < projectArray.getLength(); i++){
         const option = document.createElement('option');
@@ -267,6 +271,23 @@ function drawFormTask(){
     const bodySelector = document.querySelector('body');
     bodySelector.appendChild(newContainer);
 
+}
+
+function drawFormLogicTask(){
+    const okButtonTask = document.querySelector('.taskForm button');
+    const inputSelector = document.querySelectorAll('.taskForm input');
+    const select = document.querySelector('.taskForm select');
+
+    okButtonTask.addEventListener('click', ()=> {
+        if(inputSelector[0].value &&
+           inputSelector[1].value &&
+           inputSelector[2].value &&
+           inputSelector[3].value){
+
+           }
+
+
+    });
 }
 
 function blurTheFormTask(){
