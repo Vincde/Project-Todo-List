@@ -114,18 +114,16 @@ function displayLogicButton(){
 
         selectDisplay.appendChild(delProjectBttn);
 
-        displayAtScreen();
+        displayAtScreen(selectButton.textContent);
     });
 }
 
-function displayAtScreen(){
+function displayAtScreen(nameOfProject){
 
     for(let i = 0; i < projectTask.getLength(); i++){
-        for(let j = 0; j < projectArray.getLength(); j++){
-            if(projectTask.getLink(i) === projectArray.getName(j)){
-                createNewDivsWithDelButton();
-                populateContainer(i);
-            }
+        if(projectTask.getLink(i) === nameOfProject){
+            createNewDivsWithDelButton();
+            populateContainer(i);
         }
     }
 
