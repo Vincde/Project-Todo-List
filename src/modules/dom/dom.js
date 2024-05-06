@@ -336,7 +336,8 @@ function startDefaultButton(){
     const defaultButton = document.querySelector('.my-projects button');
     defaultButton.addEventListener('click', () => {
         clearAll();
-        for(let i = 0; i < projectTask.getLength; i++){
+        for(let i = 0; i < projectTask.getLength(); i++){
+            console.log('aa');
             createNewDivsWithDelButton();
             populateContainer(i);
         }
