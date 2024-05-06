@@ -260,6 +260,7 @@ function drawFormTask(){
     newContainer.appendChild(form);
     newContainer.appendChild(select);
 
+    select.insertAdjacentHTML('afterend',"<br>");
     
     newContainer.appendChild(okButton);
 
