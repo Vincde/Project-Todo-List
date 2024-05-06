@@ -1,8 +1,8 @@
-import { startNewProjectButton, clearAll, addNewEventButton } from "./dom/dom.js";
+import { startNewProjectButton, clearAll, addNewEventButton, startDefaultButton } from "./dom/dom.js";
 
 
 const init = function(){
-
+    startDefaultButton();
     startNewProjectButton();
     addNewEventButton();
 

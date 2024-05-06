@@ -328,6 +328,23 @@ function unblurTheFormTask(){
             }
 }
 
+
+
+
+
+
+//DEFAULT BUTTON METHOD
+function startDefaultButton(){
+    const defaultButton = document.querySelector('.my-projects button');
+    defaultButton.addEventListener('click', () => {
+        clearAll();
+        for(let i = 0; i < projectTask.getLength; i++){
+            createNewDivsWithDelButton();
+            populateContainer(i);
+        }
+    });
+}
+
 function clearAll(){
     const board = document.querySelectorAll('.todo-board *');
 
@@ -346,4 +363,5 @@ function clearAll(){
 
 export {startNewProjectButton,
         clearAll,
-        addNewEventButton};
+        addNewEventButton,
+        startDefaultButton};
