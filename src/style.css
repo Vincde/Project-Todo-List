@@ -3,7 +3,7 @@
     margin:5px;
 }
 
-body,html{
+body{
     height: 100%;
 }
 
@@ -12,6 +12,7 @@ body,html{
 }
 .todo-board{
     width: 65%;
+    height: 100%;
     /* should this be a grid system? */
 }
 
