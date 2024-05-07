@@ -375,13 +375,14 @@ function deleteTaskLogic(){
 
 function addRenamingBttn(i){
     const lastDiv = document.querySelector('.todo-board div:last-of-type');
+    const lastBttn = document.querySelector('.todo-board div:last-of-type button:nth-child(1)');
     const renameBttn = document.createElement('button');
     const selectDivInternal = document.querySelector('.todo-board div:last-of-type div');
 
     renameBttn.setAttribute('type','button');
     renameBttn.textContent = 'Rename the Form';
 
-    lastDiv.insertBefore(renameBttn, selectDivInternal);
+    lastBttn.parentNode.insertBefore(renameBttn, lastBttn.nextSibling);
 
     renameBttn.addEventListener('click', () => {
         drawFormTask();
@@ -420,6 +421,7 @@ function startDefaultButton(){
         for(let i = 0; i < projectTask.getLength(); i++){
             createNewDivsWithDelButton();
             populateContainer(i);
+            addRenamingBttn(i);
         }
     });
 }
