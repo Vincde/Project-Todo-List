@@ -127,6 +127,7 @@ function displayAtScreen(nameOfProject){
             createNewDivsWithDelButton();
             populateContainer(i);
             deleteTaskLogic();
+            addRenamingBttn();
         }
     }
 
@@ -372,6 +373,20 @@ function deleteTaskLogic(){
     });
 }
 
+function addRenamingBttn(){
+    const lastDiv = document.querySelector('.todo-board div:last-of-type');
+    const renameBttn = document.createElement('button');
+    const selectDivInternal = document.querySelector('.todo-board div:last-of-type div');
+
+    renameBttn.setAttribute('type','button');
+    renameBttn.textContent = 'Rename the Form';
+
+    lastDiv.insertBefore(renameBttn, selectDivInternal);
+
+    /* renameBttn.addEventListener('click', () => {
+
+    }); */
+}
 
 
 //DEFAULT BUTTON METHOD
