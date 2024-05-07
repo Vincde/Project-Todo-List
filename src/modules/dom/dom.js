@@ -127,7 +127,7 @@ function displayAtScreen(nameOfProject){
             createNewDivsWithDelButton();
             populateContainer(i);
             deleteTaskLogic();
-            addRenamingBttn();
+            addRenamingBttn(i);
         }
     }
 
@@ -373,7 +373,7 @@ function deleteTaskLogic(){
     });
 }
 
-function addRenamingBttn(){
+function addRenamingBttn(i){
     const lastDiv = document.querySelector('.todo-board div:last-of-type');
     const renameBttn = document.createElement('button');
     const selectDivInternal = document.querySelector('.todo-board div:last-of-type div');
@@ -383,9 +383,32 @@ function addRenamingBttn(){
 
     lastDiv.insertBefore(renameBttn, selectDivInternal);
 
-    /* renameBttn.addEventListener('click', () => {
+    renameBttn.addEventListener('click', () => {
+        drawFormTask();
+        blurTheFormTask();
 
-    }); */
+        const select = document.querySelector('.taskForm select');
+        const inputSelector = document.querySelectorAll('.taskForm input');
+        
+        inputSelector[0].value = projectTask.getName(i);
+        inputSelector[1].value = projectTask.getDescription(i);
+        inputSelector[2].value = projectTask.getDueDate(i);
+        inputSelector[3].value = projectTask.getPriority(i);
+        select.value = projectTask.getLink(i);
+
+        const okButtonTask = document.querySelector('.taskForm button');
+        okButtonTask.addEventListener('click', () => {
+            projectTask.changeName(i,inputSelector[0].value);
+            projectTask.changeDescription(i,inputSelector[1].value);
+            projectTask.changeDueDate(i,inputSelector[2].value);
+            projectTask.changePriority(i,inputSelector[3].value);
+            projectTask.changeLink(i,select.value);
+
+            unblurTheFormTask();
+            removeTheFormTask();
+        });
+
+    });
 }
 
 

@@ -37,9 +37,25 @@ function arrayOfTasks(){
         arrayOfTasks.splice(count,1);
     }
 
+    const changeName = (count,newName) => {
+        arrayOfTasks[count].changeName(newName);
+    }
+    const changeDescription = (count,newDescription) => {
+        arrayOfTasks[count].changeDescription(newDescription);
+    }
+    const changeDueDate = (count,newDueDate) => {
+        arrayOfTasks[count].changeDueDate(newDueDate);
+    }
+    const changePriority = (count,newPriority) => {
+        arrayOfTasks[count].changePriority(newPriority);
+    }
+    const changeLink = (count,newLink) => {
+        arrayOfTasks[count].changeLink(newLink);
+    }
 
 
-    return {addElement,getDescription,getDueDate,getPriority,getProjectName,getLength,getLink,getName,deleteElement};
+
+    return {addElement,getDescription,getDueDate,getPriority,getProjectName,getLength,getLink,getName,deleteElement,changeName,changeDescription,changeDueDate,changePriority,changeLink};
 }
 
 const projectTask = arrayOfTasks();

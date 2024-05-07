@@ -23,8 +23,25 @@ function createTaskForTodo(newTitle,newDescription,newDueDate,newPriority,newPro
     function getLink(){
         return projectLink;
     }
+    function changeName(newName){
+        title = newName;
+    }
+    function changeDescription(newDescription){
+        description = newDescription
+    }    
+    function changeDueDate(newDueDate){
+        dueDate = newDueDate;
+    }
+    function changePriority(newPriority){
+        priority = newPriority;
+    }
+    function changeLink(newLink){
+        projectLink = newLink;
+    }   
+    
+    
 
-    return {getTitle,getDescription,getDate,getPriority,getProjectName,getLink};
+    return {getTitle,getDescription,getDate,getPriority,getProjectName,getLink,changeName,changeDescription,changeDueDate,changePriority,changeLink};
 }
 
 
