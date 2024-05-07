@@ -126,6 +126,7 @@ function displayAtScreen(nameOfProject){
         if(projectTask.getLink(i) === nameOfProject){
             createNewDivsWithDelButton();
             populateContainer(i);
+            deleteTaskLogic();
         }
     }
 
@@ -357,7 +358,19 @@ function unblurTheFormTask(){
 }
 
 
+function deleteTaskLogic(){
+    const delButton = document.querySelector('.todo-board div:last-of-type button:nth-child(1)');
+    const nameField = document.querySelector('.todo-board div:last-of-type > div > p:nth-child(1)');
 
+    delButton.addEventListener('click', () => {
+        for(let i = 0; i < projectTask.getLength() ; i++){
+            if(projectTask.getName(i) === nameField.textContent){
+                projectTask.deleteElement(i);
+            }
+        }
+        clearAll();
+    });
+}
 
 
 
@@ -367,7 +380,6 @@ function startDefaultButton(){
     defaultButton.addEventListener('click', () => {
         clearAll();
         for(let i = 0; i < projectTask.getLength(); i++){
-            console.log('aa');
             createNewDivsWithDelButton();
             populateContainer(i);
         }
