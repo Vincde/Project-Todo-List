@@ -33,9 +33,13 @@ function arrayOfTasks(){
         return arrayOfTasks[count].getLink();
     }
 
+    const deleteElement = (count) => {
+        arrayOfTasks.splice(count,1);
+    }
 
 
-    return {addElement,getDescription,getDueDate,getPriority,getProjectName,getLength,getLink,getName};
+
+    return {addElement,getDescription,getDueDate,getPriority,getProjectName,getLength,getLink,getName,deleteElement};
 }
 
 const projectTask = arrayOfTasks();

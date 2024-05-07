@@ -14,7 +14,11 @@ function arrayOfProjects(){
         return arrayOfProjects.length;
     }
 
-    return {pushProjectIntoArray,getName,getLength};
+    const deleteElement = () => {
+        arrayOfProjects.splice(i,1);
+    }
+
+    return {pushProjectIntoArray,getName,getLength,deleteElement};
 }
 
 const projectArray = arrayOfProjects();

@@ -111,8 +111,10 @@ function displayLogicButton(){
         const delProjectBttn = document.createElement('button');
         delProjectBttn.setAttribute('type','button');
         delProjectBttn.textContent = 'delete this project';
+        
 
         selectDisplay.appendChild(delProjectBttn);
+        deleteProjectLogic(selectButton.textContent);
 
         displayAtScreen(selectButton.textContent);
     });
@@ -164,6 +166,34 @@ function populateContainer(i){
 
     selectContainer.appendChild(newContainer);
 
+}
+
+function deleteProjectLogic(nameOfProject){
+    const delButton = document.querySelector('.todo-board button:nth-child(1)');
+
+    delButton.addEventListener('click', () => {
+        for(let i = 0; i < projectTask.getLength(); i++){
+            if(projectTask.getLink(i) === nameOfProject){
+                projectTask.deleteElement(i);
+            }
+        }
+        for(let j = 0; j < projectArray.getLength; j++){
+            if(projectArray.getName(i) === nameOfProject){
+                projectArray.deleteElement(i);
+                break;
+            }
+        }
+
+        const buttons = document.querySelectorAll('.my-projects button');
+
+        for(let elem of buttons){
+            if(elem.textContent === nameOfProject){
+                elem.parentElement.removeChild(elem);
+            }
+        }
+
+        clearAll();
+    });
 }
 
 // ADD NEW EVENT TASK
