@@ -345,7 +345,9 @@ function drawFormLogicTask(){
 
 
 
-        if(newDate[0] && newDate[1] && newDate[2]){
+        if(newDate[0] && newDate[0].length === 2 &&
+           newDate[1] && newDate[1].length === 2 &&
+           newDate[2] && newDate[2].length === 4){
         if(name  &&
            descr &&
            date  &&
@@ -430,7 +432,12 @@ function addRenamingBttn(i){
 
             let newDate = (inputSelector[2].value).split("-");
 
-            if(newDate[0] && newDate[1] && newDate[2]){
+            if(newDate[0] &&
+               newDate[0].length === 2 &&
+               newDate[1] &&
+               newDate[1].length === 2 &&
+               newDate[2] &&
+               newDate[2].length === 4){
             projectTask.changeName(i,inputSelector[0].value);
             projectTask.changeDescription(i,inputSelector[1].value);
             projectTask.changeDueDate(i,inputSelector[2].value);
