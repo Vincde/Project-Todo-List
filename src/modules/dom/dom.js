@@ -64,6 +64,7 @@ function drawFormLogic(){
             removeTheForm();
             unblurTheForm();
             displayLogicButton();
+            localstorageProjectsLogic();
         }
         
         
@@ -174,14 +175,17 @@ function deleteProjectLogic(nameOfProject){
     const delButton = document.querySelector('.todo-board button:nth-child(1)');
 
     delButton.addEventListener('click', () => {
-        for(let i = 0; i < projectTask.getLength(); i++){
-            if(projectTask.getLink(i) === nameOfProject){
-                projectTask.deleteElement(i);
+        if(projectTask.getLength() !== 0){
+            for(let i = 0; i < projectTask.getLength(); i++){
+                if(projectTask.getLink(i) === nameOfProject){
+                    projectTask.deleteElement(i);
+                }
             }
         }
-        for(let j = 0; j < projectArray.getLength; j++){
-            if(projectArray.getName(i) === nameOfProject){
-                projectArray.deleteElement(i);
+        for(let j = 0; j < projectArray.getLength(); j++){
+            if(projectArray.getName(j) === nameOfProject){
+                projectArray.deleteElement(j);
+                localstorageProjectsLogic();
                 break;
             }
         }
@@ -196,6 +200,16 @@ function deleteProjectLogic(nameOfProject){
 
         clearAll();
     });
+}
+
+function localstorageProjectsLogic(){
+    let arr = [];
+
+    for(let i = 0; i < projectArray.getLength(); i++){
+        arr.push(projectArray.getName(i));
+    }
+
+    localStorage.setItem("projects", JSON.stringify(arr));
 }
 
 // ADD NEW EVENT TASK
@@ -445,4 +459,7 @@ function clearAll(){
 export {startNewProjectButton,
         clearAll,
         addNewEventButton,
-        startDefaultButton};
+        startDefaultButton,
+        createTheProjectAndAddItToTheArray,
+        createButtonForNewProject,
+        displayLogicButton};

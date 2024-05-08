@@ -14,7 +14,7 @@ function arrayOfProjects(){
         return arrayOfProjects.length;
     }
 
-    const deleteElement = () => {
+    const deleteElement = (i) => {
         arrayOfProjects.splice(i,1);
     }
 
