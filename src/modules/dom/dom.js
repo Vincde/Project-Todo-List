@@ -343,6 +343,7 @@ function drawFormLogicTask(){
                 autoCreateTask(name,descr,date,priority,projectLink);
                 removeTheFormTask();
                 unblurTheFormTask();
+                localStorageTasksLogic();
            }
 
 
@@ -381,6 +382,7 @@ function deleteTaskLogic(){
         for(let i = 0; i < projectTask.getLength() ; i++){
             if(projectTask.getName(i) === nameField.textContent){
                 projectTask.deleteElement(i);
+                localStorageTasksLogic();
             }
         }
         clearAll();
@@ -421,9 +423,24 @@ function addRenamingBttn(i){
 
             unblurTheFormTask();
             removeTheFormTask();
+            localStorageTasksLogic();
         });
 
     });
+}
+
+function localStorageTasksLogic(){
+    let arrTasks = [];
+
+    for(let i = 0; i < projectTask.getLength(); i++){
+        arrTasks.push(projectTask.getName(i));
+        arrTasks.push(projectTask.getDescription(i));
+        arrTasks.push(projectTask.getDueDate(i));
+        arrTasks.push(projectTask.getPriority(i));
+        arrTasks.push(projectTask.getLink(i));
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(arrTasks));
 }
 
 
@@ -462,4 +479,6 @@ export {startNewProjectButton,
         startDefaultButton,
         createTheProjectAndAddItToTheArray,
         createButtonForNewProject,
-        displayLogicButton};
+        displayLogicButton,
+        deleteTaskLogic,
+        addRenamingBttn};

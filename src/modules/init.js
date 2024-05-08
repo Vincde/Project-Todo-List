@@ -1,7 +1,8 @@
-import { startNewProjectButton, clearAll, addNewEventButton, startDefaultButton, createTheProjectAndAddItToTheArray, createButtonForNewProject, displayLogicButton } from "./dom/dom.js";
-
+import { startNewProjectButton, clearAll, addNewEventButton, startDefaultButton, createTheProjectAndAddItToTheArray, createButtonForNewProject, displayLogicButton, deleteTaskLogic, addRenamingBttn } from "./dom/dom.js";
+import { autoCreateTask } from "./projectManage/newProjectCall.js";
 
 const init = function(){
+    
     startDefaultButton();
     startNewProjectButton();
     addNewEventButton();
@@ -15,6 +16,25 @@ const init = function(){
         displayLogicButton();
         }
     }
+
+    if(localStorage.getItem("tasks")){
+        let arrTasks = [];
+        arrTasks = JSON.parse(localStorage.getItem("tasks"));
+        let i = 0;
+        let count = 0;
+
+        while(i <= arrTasks.length){
+            autoCreateTask(arrTasks[i],
+                           arrTasks[i+1],
+                           arrTasks[i+2],
+                           arrTasks[i+3],
+                           arrTasks[i+4]);
+            i = i+5;               
+        }
+        
+    }
+
+    
 
 }
 
