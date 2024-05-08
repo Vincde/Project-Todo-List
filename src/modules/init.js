@@ -1,11 +1,9 @@
 import { startNewProjectButton, clearAll, addNewEventButton, startDefaultButton, createTheProjectAndAddItToTheArray, createButtonForNewProject, displayLogicButton, deleteTaskLogic, addRenamingBttn } from "./dom/dom.js";
 import { autoCreateTask } from "./projectManage/newProjectCall.js";
+import projectArray from "./templateFiles/arrayOfProjects.js";
+import projectTask from "./templateFiles/arrayOfTasks.js";
 
 const init = function(){
-    
-    startDefaultButton();
-    startNewProjectButton();
-    addNewEventButton();
 
     if(localStorage.getItem("projects")){
         let arr = JSON.parse(localStorage.getItem("projects"));
@@ -23,7 +21,7 @@ const init = function(){
         let i = 0;
         let count = 0;
 
-        while(i <= arrTasks.length){
+        while(i < (arrTasks.length)){
             autoCreateTask(arrTasks[i],
                            arrTasks[i+1],
                            arrTasks[i+2],
@@ -31,9 +29,11 @@ const init = function(){
                            arrTasks[i+4]);
             i = i+5;               
         }
-        
     }
 
+    startDefaultButton();
+    startNewProjectButton();
+    addNewEventButton();
     
 
 }

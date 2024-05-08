@@ -449,7 +449,7 @@ function startDefaultButton(){
     const defaultButton = document.querySelector('.my-projects button');
     defaultButton.addEventListener('click', () => {
         clearAll();
-        for(let i = 0; i < projectTask.getLength(); i++){
+        for(let i = 0; i < (projectTask.getLength()); i++){
             createNewDivsWithDelButton();
             populateContainer(i);
             addRenamingBttn(i);
