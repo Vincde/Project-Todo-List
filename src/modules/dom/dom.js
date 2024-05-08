@@ -280,6 +280,7 @@ function drawFormTask(){
     newLabelDescription.setAttribute('for','NewTaskDescription');
 
     newInputDate.setAttribute('id','NewTaskDate');
+    newInputDate.setAttribute('placeholder', '23-10-1993');
     newLabelDate.textContent = 'DueDate => ';
     newLabelDate.setAttribute('for','NewTaskDate');
 
@@ -330,12 +331,21 @@ function drawFormLogicTask(){
     
 
     okButtonTask.addEventListener('click', ()=> {
+        
+        
         let name = inputSelector[0].value;
         let descr = inputSelector[1].value;
         let date = inputSelector[2].value;
         let priority = inputSelector[3].value;
         let projectLink = select.value;
 
+        let newDate = date.split("-");
+
+        
+
+
+
+        if(newDate[0] && newDate[1] && newDate[2]){
         if(name  &&
            descr &&
            date  &&
@@ -346,7 +356,9 @@ function drawFormLogicTask(){
                 localStorageTasksLogic();
            }
 
-
+        }else{
+            alert('date format is wrong,retry');
+        }
     });
 }
 
@@ -415,6 +427,10 @@ function addRenamingBttn(i){
 
         const okButtonTask = document.querySelector('.taskForm button');
         okButtonTask.addEventListener('click', () => {
+
+            let newDate = (inputSelector[2].value).split("-");
+
+            if(newDate[0] && newDate[1] && newDate[2]){
             projectTask.changeName(i,inputSelector[0].value);
             projectTask.changeDescription(i,inputSelector[1].value);
             projectTask.changeDueDate(i,inputSelector[2].value);
@@ -424,6 +440,9 @@ function addRenamingBttn(i){
             unblurTheFormTask();
             removeTheFormTask();
             localStorageTasksLogic();
+            }else{
+                alert('date format is wrong');
+            }
         });
 
     });

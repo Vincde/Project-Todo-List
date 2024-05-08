@@ -10,9 +10,9 @@ function createTheProjectAndAddItToTheArray(name){
 }
 
 function autoCreateTask(name,descr,date,priority,projectLink){
-    let newDate = date.split("/");
+    let newDate = date.split("-");
     
-    newDate = format(new Date(`${newDate[0]}`,`${newDate[1]-1}`,`${newDate[2]}`),"dd-MM-yyyy");
+    newDate = format(new Date(`${newDate[2]}`,`${newDate[1]-1}`,`${newDate[0]}`),"dd-MM-yyyy");
     const newTask = createTaskForTodo(name,descr,newDate,priority,projectLink);
     projectTask.addElement(newTask);
 }
