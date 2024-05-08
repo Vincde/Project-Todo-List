@@ -2,7 +2,7 @@ import projectArray from "../templateFiles/arrayOfProjects.js";
 import createNewProject from "../templateFiles/project.js";
 import createTaskForTodo from "../templateFiles/task.js";
 import projectTask from "../templateFiles/arrayOfTasks.js";
-
+import { format } from "date-fns";
 
 function createTheProjectAndAddItToTheArray(name){
     let newProject = createNewProject(name);
@@ -10,7 +10,10 @@ function createTheProjectAndAddItToTheArray(name){
 }
 
 function autoCreateTask(name,descr,date,priority,projectLink){
-    const newTask = createTaskForTodo(name,descr,date,priority,projectLink);
+    let newDate = date.split("/");
+    
+    newDate = format(new Date(`${newDate[0]}`,`${newDate[1]-1}`,`${newDate[2]}`),"dd-MM-yyyy");
+    const newTask = createTaskForTodo(name,descr,newDate,priority,projectLink);
     projectTask.addElement(newTask);
 }
 
