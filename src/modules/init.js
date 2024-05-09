@@ -1,4 +1,4 @@
-import { startNewProjectButton, clearAll, addNewEventButton, startDefaultButton, createTheProjectAndAddItToTheArray, createButtonForNewProject, displayLogicButton, deleteTaskLogic, addRenamingBttn } from "./dom/dom.js";
+import { startNewProjectButton, clearAll, addNewEventButton, startDefaultButton, createTheProjectAndAddItToTheArray, createButtonForNewProject, displayLogicButton, deleteTaskLogic, addRenamingBttn, searchButton } from "./dom/dom.js";
 import { autoCreateTask } from "./projectManage/newProjectCall.js";
 import projectArray from "./templateFiles/arrayOfProjects.js";
 import projectTask from "./templateFiles/arrayOfTasks.js";
@@ -34,7 +34,7 @@ const init = function(){
     startDefaultButton();
     startNewProjectButton();
     addNewEventButton();
-    
+    searchButton();
 
 }
 

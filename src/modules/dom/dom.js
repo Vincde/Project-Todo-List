@@ -483,6 +483,31 @@ function startDefaultButton(){
     });
 }
 
+function searchButton(){
+    const buttonsDiv = document.querySelector('.buttons');
+    const searchBttn = document.querySelector('.buttons button:last-of-type');
+    const newInputSearch = document.createElement('input');
+    let inputString;
+    let inputLenght;
+
+    searchBttn.addEventListener('click', () => {
+        buttonsDiv.appendChild(newInputSearch);
+        newInputSearch.addEventListener('keyup', () => {    
+            inputString = newInputSearch.value;
+            inputLenght = newInputSearch.value.length;
+            for(let i = 0; i < projectTask.getLength(); i++){
+                if((projectTask.getName(i)).slice(0,inputLenght) === inputString){
+                    clearAll();
+                    createNewDivsWithDelButton();
+                    populateContainer(i);
+                    deleteTaskLogic();
+                    addRenamingBttn(i);
+                }
+            }
+        });
+    });
+}
+
 function clearAll(){
     const board = document.querySelectorAll('.todo-board *');
 
@@ -507,4 +532,5 @@ export {startNewProjectButton,
         createButtonForNewProject,
         displayLogicButton,
         deleteTaskLogic,
-        addRenamingBttn};
+        addRenamingBttn,
+        searchButton};
