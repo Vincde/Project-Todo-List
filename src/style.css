@@ -9,10 +9,12 @@ body{
 
 .dashboard{
     width: 30%;
+    background-color: #dfd0d8;
 }
 .todo-board{
     width: 65%;
     height: 100%;
+    background-color: #dfd0d8;
     /* should this be a grid system? */
 }
 
@@ -32,6 +34,7 @@ body{
 
 h1{  /* this h1 is equal to .dashboard > div:first-of-type h1... */
     width: 80%;
+    font-size: 30px;
 }
 
 
@@ -41,14 +44,14 @@ h1{  /* this h1 is equal to .dashboard > div:first-of-type h1... */
     margin-bottom: 50px;  /* distance between second and third */
 }
 
-.buttons button{
+/* .buttons button{
     width: 10em;
     list-style: none;
     border-style: none;
     background-color: #3c5b6f;
     margin-bottom: 10px;
     border-radius: 7%;
-}
+} */
 
 
 .projectForm,
@@ -69,3 +72,22 @@ h1{  /* this h1 is equal to .dashboard > div:first-of-type h1... */
 }
 
 
+
+/* CSS */
+button{
+  background-image: linear-gradient(#0dccea, #0d70ea);
+  border: 0;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Montserrat,sans-serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 10px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
